@@ -45,7 +45,7 @@ Nota: l'account Brevo risulta con **SMTP non attivato** (403), quindi gli step 5
 - **Conclusione: migrazione a rischio molto basso.**
 
 ## 5. Riferimenti hardcoded al backend attuale
-- `supabase/config.toml` → `project_id = "xbxymqccjlwldvxqiifm"`
+- `supabase/config.toml` → `project_id = "cgjzoktwcblrdwasakxw"`
 - `.env` → `VITE_SUPABASE_PROJECT_ID`, `VITE_SUPABASE_URL`, `VITE_SUPABASE_PUBLISHABLE_KEY` (file auto-generato da Lovable)
 - `src/integrations/supabase/client.ts` → legge solo le env, nessun URL hardcoded (buono)
 - Nessun URL `*.supabase.co` hardcoded nel codice sorgente
