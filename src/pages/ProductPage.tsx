@@ -1,9 +1,13 @@
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
+import { useQuery } from "@tanstack/react-query";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import FooterSection from "@/components/FooterSection";
+import BuyBox from "@/components/BuyBox";
+import { fetchProductBySlug } from "@/lib/shopClient";
+import { resolveProductImage } from "@/lib/shop";
 import productConero from "@/assets/product-conero.jpg";
 import productSibilla from "@/assets/product-sibilla.jpg";
 import productCatria from "@/assets/product-catria.jpg";
@@ -40,7 +44,34 @@ const productData: Record<
 
 const ProductPage = () => {
   const { slug } = useParams<{ slug: string }>();
-  const product = slug ? productData[slug] : null;
+  const staticProduct = slug ? productData[slug] : null;
+
+  const { data: dbProduct } = useQuery({
+    queryKey: ["product", slug],
+    queryFn: () => fetchProductBySlug(slug as string),
+    enabled: Boolean(slug),
+    staleTime: 60_000,
+  });
+
+  // I contenuti commerciali (prezzo, varianti, disponibilità) arrivano dal
+  // database; i testi e le immagini statiche restano come fallback di design.
+  const product = staticProduct
+    ? {
+        ...staticProduct,
+        name: dbProduct?.name ?? staticProduct.name,
+        subtitle: dbProduct?.subtitle ?? staticProduct.subtitle,
+        desc: dbProduct?.description ?? staticProduct.desc,
+        seoDescription: dbProduct?.seo_description ?? staticProduct.seoDescription,
+        image:
+          resolveProductImage(
+            dbProduct?.images?.[0]?.asset_key,
+            dbProduct?.images?.[0]?.url,
+          ) ?? staticProduct.image,
+      }
+    : null;
+
+  const purchasable =
+    Boolean(dbProduct?.purchasable) && (dbProduct?.variants ?? []).some((v) => v.active);
 
   if (!product) {
     return (
