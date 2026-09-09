@@ -1,9 +1,13 @@
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
+import { useQuery } from "@tanstack/react-query";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import FooterSection from "@/components/FooterSection";
+import BuyBox from "@/components/BuyBox";
+import { fetchProductBySlug } from "@/lib/shopClient";
+import { resolveProductImage } from "@/lib/shop";
 import productConero from "@/assets/product-conero.jpg";
 import productSibilla from "@/assets/product-sibilla.jpg";
 import productCatria from "@/assets/product-catria.jpg";
@@ -40,7 +44,34 @@ const productData: Record<
 
 const ProductPage = () => {
   const { slug } = useParams<{ slug: string }>();
-  const product = slug ? productData[slug] : null;
+  const staticProduct = slug ? productData[slug] : null;
+
+  const { data: dbProduct } = useQuery({
+    queryKey: ["product", slug],
+    queryFn: () => fetchProductBySlug(slug as string),
+    enabled: Boolean(slug),
+    staleTime: 60_000,
+  });
+
+  // I contenuti commerciali (prezzo, varianti, disponibilità) arrivano dal
+  // database; i testi e le immagini statiche restano come fallback di design.
+  const product = staticProduct
+    ? {
+        ...staticProduct,
+        name: dbProduct?.name ?? staticProduct.name,
+        subtitle: dbProduct?.subtitle ?? staticProduct.subtitle,
+        desc: dbProduct?.description ?? staticProduct.desc,
+        seoDescription: dbProduct?.seo_description ?? staticProduct.seoDescription,
+        image:
+          resolveProductImage(
+            dbProduct?.images?.[0]?.asset_key,
+            dbProduct?.images?.[0]?.url,
+          ) ?? staticProduct.image,
+      }
+    : null;
+
+  const purchasable =
+    Boolean(dbProduct?.purchasable) && (dbProduct?.variants ?? []).some((v) => v.active);
 
   if (!product) {
     return (
@@ -130,27 +161,34 @@ const ProductPage = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <span className="inline-block bg-primary text-primary-foreground text-xs tracking-wide uppercase font-body font-bold px-5 py-2 rounded-full mb-6">
-                Prossimamente ✨
+                {dbProduct?.badge_label ?? (purchasable ? "Disponibile ✨" : "Prossimamente ✨")}
               </span>
               <h1 className="font-display text-5xl md:text-7xl font-extrabold text-foreground mb-2">{product.name}</h1>
               <p className="font-body text-lg text-violet font-semibold mb-6">{product.subtitle}</p>
               <p className="font-body text-xl text-muted-foreground leading-relaxed mb-4">{product.desc}</p>
               <p className="font-body text-lg text-muted-foreground/80 leading-relaxed mb-8">{product.details}</p>
               <div className="w-20 h-1 bg-primary rounded-full mb-8" />
-              <p className="font-body text-muted-foreground italic mb-8">
-                Maggiori informazioni saranno disponibili prossimamente.
-              </p>
 
-              <a
-                href="mailto:info@amareacosmetics.it"
-                className="group inline-flex items-center gap-3 bg-foreground text-primary-foreground font-body font-bold text-lg px-8 py-4 rounded-full hover:scale-105 transition-all duration-500"
-              >
-                Contattaci per info
-                <ArrowUpRight
-                  size={18}
-                  className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300"
-                />
-              </a>
+              {purchasable && dbProduct ? (
+                <BuyBox product={dbProduct} />
+              ) : (
+                <>
+                  <p className="font-body text-muted-foreground italic mb-8">
+                    Maggiori informazioni saranno disponibili prossimamente.
+                  </p>
+
+                  <a
+                    href="mailto:info@amareacosmetics.it"
+                    className="group inline-flex items-center gap-3 bg-foreground text-primary-foreground font-body font-bold text-lg px-8 py-4 rounded-full hover:scale-105 transition-all duration-500"
+                  >
+                    Contattaci per info
+                    <ArrowUpRight
+                      size={18}
+                      className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300"
+                    />
+                  </a>
+                </>
+              )}
             </motion.div>
           </div>
         </div>

@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, ShoppingBag, X } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import logoImg from "@/assets/amarea-navbar-logo.png";
+import { useCart } from "@/context/CartContext";
 
 const navLinks = [
   { label: "Home", href: "/#hero" },
@@ -16,6 +17,7 @@ const navLinks = [
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const location = useLocation();
+  const { count, openCart } = useCart();
 
   const handleNav = (href: string) => {
     setOpen(false);
@@ -64,21 +66,36 @@ const Navbar = () => {
             ))}
           </ul>
 
-          <a
-            href="mailto:info@amareacosmetics.com?subject=Richiesta%20informazioni%20%E2%80%93%20Amarea%20Cosmetics"
-            className="hidden md:block bg-primary text-primary-foreground font-body font-semibold text-sm px-6 py-2 rounded-full hover:scale-105 transition-transform duration-300"
-          >
-            Contattaci 🌸
-          </a>
+          <div className="flex items-center gap-2">
+            <a
+              href="mailto:info@amareacosmetics.com?subject=Richiesta%20informazioni%20%E2%80%93%20Amarea%20Cosmetics"
+              className="hidden md:block bg-primary text-primary-foreground font-body font-semibold text-sm px-6 py-2 rounded-full hover:scale-105 transition-transform duration-300"
+            >
+              Contattaci 🌸
+            </a>
 
-          <button
-            className="md:hidden text-primary-foreground"
-            onClick={() => setOpen(!open)}
-            aria-label={open ? "Chiudi menu" : "Apri menu"}
-            aria-expanded={open}
-          >
-            {open ? <X size={24} /> : <Menu size={24} />}
-          </button>
+            <button
+              onClick={openCart}
+              aria-label={`Apri carrello${count > 0 ? ` (${count} articoli)` : ""}`}
+              className="relative text-primary-foreground hover:bg-primary-foreground/10 p-2 rounded-full transition-colors"
+            >
+              <ShoppingBag size={22} />
+              {count > 0 && (
+                <span className="absolute -top-0.5 -right-0.5 bg-primary text-primary-foreground text-[10px] font-bold rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1">
+                  {count}
+                </span>
+              )}
+            </button>
+
+            <button
+              className="md:hidden text-primary-foreground"
+              onClick={() => setOpen(!open)}
+              aria-label={open ? "Chiudi menu" : "Apri menu"}
+              aria-expanded={open}
+            >
+              {open ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
       </div>
 
