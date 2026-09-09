@@ -54,22 +54,32 @@ Deno.serve(async (req) => {
       wanted.set(id, (wanted.get(id) ?? 0) + qty);
     }
 
-    const email = str(body.email, 255).toLowerCase();
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      return json({ error: "Inserisci un indirizzo email valido." }, 400);
-    }
+const customer = body.customer ?? {};
+const shippingAddress = body.shipping_address ?? {};
 
-    const ship = {
-      first_name: str(body.first_name, 80),
-      last_name: str(body.last_name, 80),
-      line1: str(body.line1, 200),
-      line2: str(body.line2, 200) || null,
-      city: str(body.city, 100),
-      postal_code: str(body.postal_code, 20),
-      province: str(body.province, 50) || null,
-      country: (str(body.country, 2) || "IT").toUpperCase(),
-      phone: str(body.phone, 40) || null,
-    };
+const email = str(
+  customer.email ?? shippingAddress.email,
+  255,
+).toLowerCase();
+
+if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+  return json({ error: "Inserisci un indirizzo email valido." }, 400);
+}
+
+const ship = {
+  first_name: str(shippingAddress.first_name, 80),
+  last_name: str(shippingAddress.last_name, 80),
+  line1: str(shippingAddress.line1, 200),
+  line2: str(shippingAddress.line2, 200) || null,
+  city: str(shippingAddress.city, 100),
+  postal_code: str(shippingAddress.postal_code, 20),
+  province: str(shippingAddress.province, 50) || null,
+  country: (str(shippingAddress.country, 2) || "IT").toUpperCase(),
+  phone: str(
+    customer.phone ?? shippingAddress.phone,
+    40,
+  ) || null,
+};
     for (const [k, v] of Object.entries({
       first_name: ship.first_name,
       last_name: ship.last_name,
