@@ -14,11 +14,14 @@ import { toast } from "sonner";
 const inputClass =
   "w-full rounded-2xl border border-border bg-background px-4 py-3 font-body text-foreground focus:outline-none focus:ring-2 focus:ring-primary";
 
+const CHECKOUT_TIMEOUT_MS = 15000;
+
 const CheckoutPage = () => {
   const navigate = useNavigate();
   const { lines, items, subtotalCents, shippingCents, totalCents, currency, storeOpen } = useCart();
   const { data: settings } = useQuery({ queryKey: ["store-settings"], queryFn: fetchStoreSettings });
   const [submitting, setSubmitting] = useState(false);
+  const [stripeUrl, setStripeUrl] = useState<string | null>(null);
   const [form, setForm] = useState({
     email: "",
     phone: "",
@@ -38,11 +41,45 @@ const CheckoutPage = () => {
   const set = (key: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
     setForm((f) => ({ ...f, [key]: e.target.value }));
 
+  const redirectToStripe = (url: string): boolean => {
+    const inIframe = (() => {
+      try {
+        return window.self !== window.top;
+      } catch {
+        return true;
+      }
+    })();
+    console.info("[checkout] redirect mode:", inIframe ? "iframe" : "top-level");
+    if (!inIframe) {
+      window.location.assign(url);
+      return true;
+    }
+    try {
+      window.top!.location.href = url;
+      return true;
+    } catch (err) {
+      console.warn("[checkout] top-level navigation blocked, trying popup", err);
+    }
+    const win = window.open(url, "_blank", "noopener,noreferrer");
+    // con "noopener" alcuni browser restituiscono null anche se la finestra si apre:
+    // mostriamo comunque il link manuale come rete di sicurezza.
+    setStripeUrl(url);
+    if (win) toast.success("Stripe è stato aperto in una nuova scheda.");
+    else toast.warning("Il browser ha bloccato l'apertura di Stripe. Usa il pulsante «Apri Stripe».");
+    return false;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (items.length === 0) return;
+    console.info("[checkout] submit started");
     setSubmitting(true);
+    setStripeUrl(null);
+    const controller = new AbortController();
+    const timer = window.setTimeout(() => controller.abort(), CHECKOUT_TIMEOUT_MS);
+    let navigating = false;
     try {
+      console.info("[checkout] invoking create-checkout-session");
       const { data, error } = await supabase.functions.invoke("create-checkout-session", {
         body: {
           items: items.map((i) => ({ variant_id: i.variant_id, quantity: i.quantity })),
@@ -50,17 +87,73 @@ const CheckoutPage = () => {
           shipping_address: { ...form, country },
           origin: window.location.origin,
         },
+        signal: controller.signal,
       });
-      if (error) throw error;
-      if (data?.url) {
-        window.location.href = data.url as string;
+      console.info("[checkout] edge function finished", { hasError: !!error, hasUrl: !!data?.url });
+
+      if (controller.signal.aborted) {
+        toast.error("Il server di pagamento non ha risposto in tempo. Riprova tra qualche istante.");
         return;
       }
-      throw new Error("Risposta di checkout non valida");
+      if (error) {
+        let msg = "Il server di pagamento ha restituito un errore.";
+        try {
+          const ctx = (error as { context?: Response }).context;
+          if (ctx && typeof ctx.json === "function") {
+            const b = await ctx.json();
+            if (b?.error) msg = String(b.error);
+          }
+        } catch {
+          /* corpo non JSON */
+        }
+        if ((error as Error).name === "FunctionsFetchError") {
+          msg = "Impossibile contattare il server di pagamento. Controlla la connessione e riprova.";
+        }
+        toast.error(msg);
+        return;
+      }
+      if (!data) {
+        toast.error("Il server di pagamento ha restituito una risposta vuota.");
+        return;
+      }
+      if (data.error) {
+        toast.error(String(data.error));
+        return;
+      }
+      const url = typeof data.url === "string" ? data.url.trim() : "";
+      if (!url) {
+        toast.error("Il server non ha fornito il link di pagamento Stripe.");
+        return;
+      }
+      let parsed: URL;
+      try {
+        parsed = new URL(url);
+      } catch {
+        toast.error("Il link di pagamento ricevuto non è valido.");
+        return;
+      }
+      if (parsed.protocol !== "https:") {
+        toast.error("Il link di pagamento ricevuto non è sicuro (HTTPS).");
+        return;
+      }
+      console.info("[checkout] redirect started");
+      try {
+        navigating = redirectToStripe(url);
+      } catch (err) {
+        console.error("[checkout] redirect error", err);
+        setStripeUrl(url);
+        toast.error("Non è stato possibile aprire Stripe automaticamente. Usa il pulsante «Apri Stripe».");
+      }
     } catch (err) {
-      console.error(err);
-      toast.error("Non è stato possibile avviare il pagamento. Riprova.");
-      setSubmitting(false);
+      console.error("[checkout] error", err);
+      if (controller.signal.aborted || (err as Error)?.name === "AbortError") {
+        toast.error("Il server di pagamento non ha risposto in tempo. Riprova tra qualche istante.");
+      } else {
+        toast.error("Errore imprevisto durante l'avvio del pagamento. Riprova.");
+      }
+    } finally {
+      window.clearTimeout(timer);
+      if (!navigating) setSubmitting(false);
     }
   };
 
@@ -134,6 +227,19 @@ const CheckoutPage = () => {
               {submitting && <Loader2 className="animate-spin" size={18} />}
               Vai al pagamento
             </button>
+            {stripeUrl && (
+              <div className="rounded-2xl border border-border bg-card p-4 font-body text-foreground space-y-3">
+                <p>Se la pagina di pagamento non si è aperta, premi qui:</p>
+                <a
+                  href={stripeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block bg-foreground text-primary-foreground font-bold px-6 py-3 rounded-full"
+                >
+                  Apri Stripe
+                </a>
+              </div>
+            )}
             <p className="font-body text-sm text-muted-foreground">
               Il pagamento avviene su Stripe. Non conserviamo i dati della tua carta.
             </p>
