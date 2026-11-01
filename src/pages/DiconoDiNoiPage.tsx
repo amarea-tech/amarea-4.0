@@ -212,8 +212,40 @@ const ArticoloCard = ({
   </motion.article>
 );
 
+const PAGE_TITLE = "Dicono di noi — Riconoscimenti e stampa | Amarea Cosmetics";
+const PAGE_DESCRIPTION =
+  "I riconoscimenti e la rassegna stampa di Amarea Cosmetics, spin-off UNIVPM: Start Cup Marche, GammaDonna FAB50, Make it Circular, ANSA e Il Messaggero.";
+const PAGE_OG_URL = "https://amareacosmetics.com/dicono-di-noi";
+
+// react-helmet-async aggiunge i tag della pagina in fondo all'head senza
+// rimuovere quelli statici di index.html: qui li sovrascriviamo finché
+// l'utente è su questa pagina e li ripristiniamo appena ne esce.
+const STATIC_HEAD_OVERRIDES: Array<[string, string]> = [
+  ['meta[name="description"]', PAGE_DESCRIPTION],
+  ['meta[property="og:description"]', PAGE_DESCRIPTION],
+  ['meta[property="og:title"]', PAGE_TITLE],
+  ['meta[property="og:url"]', PAGE_OG_URL],
+  ['meta[name="twitter:title"]', PAGE_TITLE],
+  ['meta[name="twitter:description"]', PAGE_DESCRIPTION],
+];
+
 const DiconoDiNoiPage = () => {
+  useEffect(() => {
+    const overrides: Array<[Element, string]> = [];
+    for (const [selector, value] of STATIC_HEAD_OVERRIDES) {
+      const el = document.head.querySelector(`${selector}:not([data-rh])`);
+      if (el && el.getAttribute("content") !== value) {
+        overrides.push([el, el.getAttribute("content") ?? ""]);
+        el.setAttribute("content", value);
+      }
+    }
+    return () => {
+      for (const [el, original] of overrides) el.setAttribute("content", original);
+    };
+  }, []);
+
   return (
+
     <div className="min-h-screen bg-background">
       <Helmet>
         <title>Dicono di noi — Riconoscimenti e stampa | Amarea Cosmetics</title>
