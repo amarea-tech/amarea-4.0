@@ -12,7 +12,9 @@ const navLinks = [
   { label: "Team", href: "/#team" },
   { label: "Le Aziende Partner", href: "/filiera" },
   { label: "Dicono di noi", href: "/dicono-di-noi" },
+  { label: "Collabora con noi", href: "/#collabora" },
 ];
+
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);

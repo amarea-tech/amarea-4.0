@@ -38,7 +38,7 @@ const botanicals = [
 
 const CollaboraSection = () => {
   return (
-    <section id="collabora" className="relative overflow-hidden border-t border-[#E0DACE] bg-[#F4EFE6]">
+    <section id="collabora" className="relative overflow-hidden border-t border-[#E0DACE] bg-[#F4EFE6] scroll-mt-24 md:scroll-mt-28">
       <div className="absolute inset-0 pointer-events-none z-0">
         {botanicals.map((p, i) => (
           <motion.img
