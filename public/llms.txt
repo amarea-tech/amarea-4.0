@@ -10,7 +10,6 @@ Contatti: info@amareacosmetics.it
 ## Pagine principali
 
 - [Home](https://amareacosmetics.com/): filosofia, prodotti, team e collaborazioni.
-- [Grow With Amarea](https://amareacosmetics.com/grow): dashboard "meteo cosmetico" con dati ambientali reali (UV, umidità, particolato, pollini, ciclo solare) e consigli per la cura della pelle.
 - [Sostieni Amarea](https://amareacosmetics.com/sostieni-amarea): Il Giardino di Amarea, donazioni libere a supporto della ricerca.
 
 ## Collezione Monti Italiani
