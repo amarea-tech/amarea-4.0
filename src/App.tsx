@@ -10,7 +10,6 @@ import CartDrawer from "./components/CartDrawer";
 
 const ProductPage = lazy(() => import("./pages/ProductPage"));
 const TeamMemberPage = lazy(() => import("./pages/TeamMemberPage"));
-const SupportPage = lazy(() => import("./pages/SupportPage"));
 const CheckoutPage = lazy(() => import("./pages/CheckoutPage"));
 const CheckoutSuccess = lazy(() => import("./pages/CheckoutSuccess"));
 const CheckoutCancel = lazy(() => import("./pages/CheckoutCancel"));
@@ -52,7 +51,6 @@ const App = () => (
           <Suspense fallback={<div className="min-h-screen bg-background" />}>
             <Routes>
               <Route path="/" element={<Index />} />
-              <Route path="/sostieni-amarea" element={<SupportPage />} />
               <Route path="/prodotti/:slug" element={<ProductPage />} />
               <Route path="/team/:slug" element={<TeamMemberPage />} />
               <Route path="/checkout" element={<CheckoutPage />} />
