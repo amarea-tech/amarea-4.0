@@ -11,6 +11,7 @@ const navLinks = [
   { label: "Prodotti", href: "/#prodotti" },
   { label: "Team", href: "/#team" },
   { label: "Le Aziende Partner", href: "/filiera" },
+  { label: "Dicono di noi", href: "/dicono-di-noi" },
 ];
 
 const Navbar = () => {
