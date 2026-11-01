@@ -245,10 +245,10 @@ const DiconoDiNoiPage = () => {
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.img
-          src={petalLavender}
+          src={flowerSaffronLilac}
           alt=""
           aria-hidden="true"
-          className="absolute bottom-6 left-[6%] w-12 md:w-16 opacity-60 pointer-events-none select-none"
+          className="absolute bottom-6 left-[6%] w-8 md:w-10 opacity-60 pointer-events-none select-none"
           animate={{ y: [0, 10, 0], rotate: [-24, -32, -24] }}
           transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
         />
