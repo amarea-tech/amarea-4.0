@@ -25,7 +25,7 @@ const HeroSection = () => {
           </div>
           <div className="inline-flex items-center gap-2 bg-primary/20 border border-primary/30 text-primary-foreground px-5 py-2 rounded-full font-body text-sm font-medium">
             <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-            Spin-off Universitario
+            Start-up Innovativa , Spin-off dell'Università Politecnica delle Marche
           </div>
         </motion.div>
 
