@@ -9,6 +9,7 @@ import { CartProvider } from "./context/CartContext";
 import CartDrawer from "./components/CartDrawer";
 
 const ProductPage = lazy(() => import("./pages/ProductPage"));
+const FilieraPage = lazy(() => import("./pages/FilieraPage"));
 const TeamMemberPage = lazy(() => import("./pages/TeamMemberPage"));
 const CheckoutPage = lazy(() => import("./pages/CheckoutPage"));
 const CheckoutSuccess = lazy(() => import("./pages/CheckoutSuccess"));
