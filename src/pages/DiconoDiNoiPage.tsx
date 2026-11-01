@@ -217,8 +217,9 @@ const DiconoDiNoiPage = () => {
         <title>Dicono di noi — Riconoscimenti e stampa | Amarea Cosmetics</title>
         <meta
           name="description"
-          content="I riconoscimenti e le voci che hanno accompagnato il percorso di Amarea Cosmetics, dal laboratorio al mercato."
+          content="I riconoscimenti e la rassegna stampa di Amarea Cosmetics, spin-off UNIVPM: Start Cup Marche, GammaDonna FAB50, Make it Circular, ANSA e Il Messaggero."
         />
+
         <link rel="canonical" href="https://amareacosmetics.com/dicono-di-noi" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://amareacosmetics.com/dicono-di-noi" />
@@ -228,8 +229,9 @@ const DiconoDiNoiPage = () => {
         />
         <meta
           property="og:description"
-          content="I riconoscimenti e le voci che hanno accompagnato il nostro percorso, dal laboratorio al mercato."
+          content="I riconoscimenti e la rassegna stampa di Amarea Cosmetics, spin-off UNIVPM: Start Cup Marche, GammaDonna FAB50, Make it Circular, ANSA e Il Messaggero."
         />
+
       </Helmet>
       <Navbar />
 
