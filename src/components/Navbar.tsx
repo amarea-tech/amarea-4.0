@@ -11,7 +11,6 @@ const navLinks = [
   { label: "Prodotti", href: "/#prodotti" },
   { label: "Team", href: "/#team" },
   { label: "Sostieni Amarea", href: "/sostieni-amarea" },
-  { label: "Grow With Amarea", href: "/grow" },
 ];
 
 const Navbar = () => {
