@@ -104,7 +104,7 @@ const ProductsSection = () => {
               </span>
               <span className="h-3 w-px bg-primary-foreground/30"></span>
               <span className="font-display italic text-xs md:text-sm text-primary-foreground font-medium tracking-wide">
-                Settembre 2026
+                Dicembre 2026
               </span>
             </motion.div>
           </div>
