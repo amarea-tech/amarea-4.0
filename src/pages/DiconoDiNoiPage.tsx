@@ -248,25 +248,16 @@ const DiconoDiNoiPage = () => {
 
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Dicono di noi — Riconoscimenti e stampa | Amarea Cosmetics</title>
-        <meta
-          name="description"
-          content="I riconoscimenti e la rassegna stampa di Amarea Cosmetics, spin-off UNIVPM: Start Cup Marche, GammaDonna FAB50, Make it Circular, ANSA e Il Messaggero."
-        />
+        <title>{PAGE_TITLE}</title>
+        <meta name="description" content={PAGE_DESCRIPTION} />
 
-        <link rel="canonical" href="https://amareacosmetics.com/dicono-di-noi" />
+        <link rel="canonical" href={PAGE_OG_URL} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://amareacosmetics.com/dicono-di-noi" />
-        <meta
-          property="og:title"
-          content="Dicono di noi — Riconoscimenti e stampa | Amarea Cosmetics"
-        />
-        <meta
-          property="og:description"
-          content="I riconoscimenti e la rassegna stampa di Amarea Cosmetics, spin-off UNIVPM: Start Cup Marche, GammaDonna FAB50, Make it Circular, ANSA e Il Messaggero."
-        />
-
+        <meta property="og:url" content={PAGE_OG_URL} />
+        <meta property="og:title" content={PAGE_TITLE} />
+        <meta property="og:description" content={PAGE_DESCRIPTION} />
       </Helmet>
+
       <Navbar />
 
       <section className="relative overflow-hidden pt-40 pb-20 bg-[#F4EFE6] border-b border-[#E0DACE]">
