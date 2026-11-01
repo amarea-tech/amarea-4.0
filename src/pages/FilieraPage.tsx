@@ -135,7 +135,7 @@ const FilieraPage = () => {
               Le eccellenze marchigiane che collaborano con noi
             </h1>
             <p className="font-body text-lg md:text-xl text-muted-foreground leading-relaxed">
-              Dietro la nostra ricerca ci sono persone, terre e saperi delle Marche.
+              Dietro la nostra ricerca ci sono persone, terre e saperi.
             </p>
           </motion.div>
         </div>
