@@ -143,17 +143,24 @@ const FilieraPage = () => {
 
       <section className="py-16 md:py-24">
         <div className="container mx-auto px-6">
-          <motion.p
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="max-w-3xl font-body text-lg text-muted-foreground leading-relaxed mb-14"
+            className="max-w-3xl font-body text-lg text-muted-foreground leading-relaxed mb-14 space-y-5"
           >
-            Lavoriamo con aziende agricole del territorio per dare nuovo valore a ciò che resta dalle loro
-            lavorazioni. Vinacce, tepali di zafferano e foglie di olivo diventano così materia prima per la
-            ricerca cosmetica, con una filiera tracciata e vicina a noi.
-          </motion.p>
+            <p>
+              Amarea nasce per valorizzare il Made in Italy: le risorse, la ricerca e le competenze del nostro
+              Paese, trasformate in valore cosmetico italiano. Terre di Amarea porta questa idea nei territori,
+              con linee che raccontano le eccellenze di una regione.
+            </p>
+            <p>
+              Abbiamo iniziato dalle Marche, la nostra terra. Con le aziende agricole marchigiane diamo nuovo
+              valore a ciò che resta dalle loro lavorazioni: vinacce, tepali di zafferano e foglie di olivo
+              diventano materia prima per la ricerca cosmetica, con una filiera tracciata e vicina a noi.
+            </p>
+          </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {partners.map((partner, i) => (
