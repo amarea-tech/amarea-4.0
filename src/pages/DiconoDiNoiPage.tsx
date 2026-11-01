@@ -278,10 +278,10 @@ const DiconoDiNoiPage = () => {
             className="max-w-3xl"
           >
             <span className="inline-block bg-primary text-primary-foreground text-xs tracking-wide uppercase font-body font-bold px-5 py-2 rounded-full mb-6">
-              Dicono di noi
+              DICONO DI NOI
             </span>
             <h1 className="font-display text-4xl md:text-6xl font-extrabold text-foreground mb-6 leading-tight">
-              Dicono di noi
+              
             </h1>
             <p className="font-body text-lg md:text-xl text-muted-foreground leading-relaxed">
               I riconoscimenti e le voci che hanno accompagnato il nostro percorso, dal
