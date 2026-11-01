@@ -10,6 +10,7 @@ const navLinks = [
   { label: "Chi Siamo", href: "/#chi-siamo" },
   { label: "Prodotti", href: "/#prodotti" },
   { label: "Team", href: "/#team" },
+  { label: "Contatti", href: "/#contatti" },
 ];
 
 const Navbar = () => {
