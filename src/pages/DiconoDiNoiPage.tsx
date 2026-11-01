@@ -1,8 +1,12 @@
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Award, Star, Medal } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import FooterSection from "@/components/FooterSection";
+import petalSaffron from "@/assets/petal-saffron.png";
+import petalLavender from "@/assets/petal-lavender.png";
+import leafSage from "@/assets/leaf-sage.png";
+import flowerSaffronLilac from "@/assets/flower-saffron-lilac.png";
 
 type Riconoscimento = {
   anno: string;
@@ -100,31 +104,72 @@ const articoli: Articolo[] = [
   },
 ];
 
-const RiconoscimentoCard = ({
+const riconoscimentoIcons = [Award, Star, Medal];
+const riconoscimentoTints = [
+  { bg: "bg-primary/10", text: "text-primary", dot: "bg-primary" },
+  { bg: "bg-secondary/20", text: "text-secondary-foreground", dot: "bg-secondary" },
+  { bg: "bg-accent/10", text: "text-accent", dot: "bg-accent" },
+];
+
+const RiconoscimentoTimelineItem = ({
   riconoscimento,
   index,
 }: {
   riconoscimento: Riconoscimento;
   index: number;
-}) => (
-  <motion.article
-    initial={{ opacity: 0, y: 40 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true, margin: "-60px" }}
-    transition={{ duration: 0.6, delay: (index % 2) * 0.1 }}
-    className="bg-card border border-border rounded-3xl p-8 shadow-sm hover:shadow-xl transition-shadow duration-500 flex flex-col"
-  >
-    <span className="self-start inline-block bg-primary/10 text-primary text-xs tracking-wide uppercase font-body font-bold px-4 py-1.5 rounded-full mb-4">
-      {riconoscimento.anno}
-    </span>
-    <h3 className="font-display text-2xl font-bold text-foreground mb-3 leading-snug">
-      {riconoscimento.titolo}
-    </h3>
-    <p className="font-body text-muted-foreground leading-relaxed">
-      {riconoscimento.testo}
-    </p>
-  </motion.article>
-);
+}) => {
+  const Icon = riconoscimentoIcons[index % riconoscimentoIcons.length];
+  const tint = riconoscimentoTints[index % riconoscimentoTints.length];
+  const isLast = index === riconoscimenti.length - 1;
+
+  return (
+    <motion.li
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.6 }}
+      className="relative flex gap-6 md:gap-10 pb-10 last:pb-0"
+    >
+      {/* Linea verticale */}
+      {!isLast && (
+        <span
+          aria-hidden="true"
+          className="absolute left-[1.4rem] md:left-[1.9rem] top-16 bottom-0 w-px bg-border"
+        />
+      )}
+
+      {/* Icona nel cerchio colorato */}
+      <div className="relative z-10 shrink-0">
+        <span
+          className={`flex h-11 w-11 md:h-[3.75rem] md:w-[3.75rem] items-center justify-center rounded-full border border-border ${tint.bg} ${tint.text}`}
+        >
+          <Icon className="h-5 w-5 md:h-6 md:w-6" strokeWidth={1.75} />
+        </span>
+        <span
+          aria-hidden="true"
+          className={`absolute -bottom-1 -right-1 h-3 w-3 rounded-full border-2 border-background ${tint.dot}`}
+        />
+      </div>
+
+      <article className="bg-card border border-border rounded-3xl p-6 md:p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-500 flex-1">
+        <span className="block font-display text-3xl md:text-4xl font-extrabold text-primary leading-none mb-3">
+          {riconoscimento.anno}
+        </span>
+        <h3 className="font-display text-xl md:text-2xl font-bold text-foreground mb-3 leading-snug">
+          {riconoscimento.titolo}
+        </h3>
+        <p className="font-body text-muted-foreground leading-relaxed">
+          {riconoscimento.testo}
+        </p>
+      </article>
+    </motion.li>
+  );
+};
+
+const tipoTint = (tipo: string) =>
+  tipo === "Intervista"
+    ? "bg-secondary/25 text-secondary-foreground"
+    : "bg-primary/10 text-primary";
 
 const ArticoloCard = ({
   articolo,
@@ -138,16 +183,16 @@ const ArticoloCard = ({
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, margin: "-60px" }}
     transition={{ duration: 0.6, delay: (index % 2) * 0.1 }}
-    className="bg-card border border-border rounded-3xl p-8 shadow-sm hover:shadow-xl transition-shadow duration-500 flex flex-col"
+    className="group bg-card border border-border rounded-3xl p-8 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-500 flex flex-col"
   >
-    <div className="flex flex-wrap items-center gap-3 mb-4">
-      <h3 className="font-display text-2xl font-bold text-foreground leading-snug">
-        {articolo.testata}
-      </h3>
-      <span className="inline-block bg-primary/10 text-primary text-xs tracking-wide uppercase font-body font-bold px-4 py-1.5 rounded-full">
-        {articolo.tipo}
-      </span>
-    </div>
+    <span
+      className={`self-start inline-block text-xs tracking-wide uppercase font-body font-bold px-4 py-1.5 rounded-full mb-6 ${tipoTint(articolo.tipo)}`}
+    >
+      {articolo.tipo}
+    </span>
+    <h3 className="font-display text-3xl md:text-4xl font-extrabold text-foreground leading-tight mb-4">
+      {articolo.testata}
+    </h3>
     <p className="font-body text-sm text-muted-foreground mb-3">{articolo.data}</p>
     <p className="font-body text-muted-foreground leading-relaxed flex-1">
       {articolo.descrizione}
@@ -156,12 +201,12 @@ const ArticoloCard = ({
       href={articolo.link}
       target="_blank"
       rel="noopener noreferrer"
-      className="group inline-flex items-center gap-2 mt-6 font-body font-semibold text-primary hover:text-primary/80 transition-colors w-fit"
+      className="group/link inline-flex items-center gap-2 mt-6 font-body font-semibold text-primary hover:text-primary/80 transition-colors w-fit"
     >
       Leggi l'articolo
       <ArrowUpRight
         size={16}
-        className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300"
+        className="group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform duration-300"
       />
     </a>
   </motion.article>
@@ -190,8 +235,42 @@ const DiconoDiNoiPage = () => {
       </Helmet>
       <Navbar />
 
-      <section className="pt-40 pb-16 bg-[#F4EFE6] border-b border-[#E0DACE]">
-        <div className="container mx-auto px-6">
+      <section className="relative overflow-hidden pt-40 pb-20 bg-[#F4EFE6] border-b border-[#E0DACE]">
+        {/* Decorazioni botaniche esistenti del brand */}
+        <motion.img
+          src={petalSaffron}
+          alt=""
+          aria-hidden="true"
+          className="absolute top-14 right-[8%] w-16 md:w-24 opacity-70 pointer-events-none select-none"
+          animate={{ y: [0, -12, 0], rotate: [12, 20, 12] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.img
+          src={petalLavender}
+          alt=""
+          aria-hidden="true"
+          className="absolute bottom-6 left-[6%] w-12 md:w-16 opacity-60 pointer-events-none select-none"
+          animate={{ y: [0, 10, 0], rotate: [-24, -32, -24] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.img
+          src={leafSage}
+          alt=""
+          aria-hidden="true"
+          className="absolute top-24 left-[14%] w-20 md:w-28 opacity-50 pointer-events-none select-none hidden md:block"
+          animate={{ y: [0, -8, 0], rotate: [-10, 2, -10] }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.img
+          src={flowerSaffronLilac}
+          alt=""
+          aria-hidden="true"
+          className="absolute bottom-0 right-[16%] w-14 md:w-20 opacity-60 pointer-events-none select-none hidden md:block"
+          animate={{ y: [0, 8, 0], rotate: [30, 38, 30] }}
+          transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
+        />
+
+        <div className="container mx-auto px-6 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -219,19 +298,20 @@ const DiconoDiNoiPage = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="font-display text-3xl md:text-4xl font-extrabold text-foreground mb-10"
+            className="font-display text-3xl md:text-4xl font-extrabold text-foreground mb-12"
           >
             Riconoscimenti
           </motion.h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-24">
+
+          <ol className="max-w-3xl mb-24">
             {riconoscimenti.map((riconoscimento, i) => (
-              <RiconoscimentoCard
+              <RiconoscimentoTimelineItem
                 key={riconoscimento.titolo}
                 riconoscimento={riconoscimento}
                 index={i}
               />
             ))}
-          </div>
+          </ol>
 
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -249,7 +329,6 @@ const DiconoDiNoiPage = () => {
           </div>
         </div>
       </section>
-
 
       <FooterSection />
     </div>
