@@ -132,7 +132,7 @@ const FilieraPage = () => {
               Filiera
             </span>
             <h1 className="font-display text-4xl md:text-6xl font-extrabold text-foreground mb-6 leading-tight">
-              Le eccellenze marchigiane che collaborano con noi
+              Le eccellenze che collaborano con noi
             </h1>
             <p className="font-body text-lg md:text-xl text-muted-foreground leading-relaxed">
               Dietro la nostra ricerca ci sono persone, terre e saperi.
