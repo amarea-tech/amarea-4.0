@@ -5,7 +5,6 @@ import Navbar from "@/components/Navbar";
 import FooterSection from "@/components/FooterSection";
 import petalSaffron from "@/assets/petal-saffron.png";
 import petalLavender from "@/assets/petal-lavender.png";
-import leafSage from "@/assets/leaf-sage.png";
 import flowerSaffronLilac from "@/assets/flower-saffron-lilac.png";
 
 type Riconoscimento = {
@@ -254,12 +253,28 @@ const DiconoDiNoiPage = () => {
           transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.img
-          src={leafSage}
+          src={flowerSaffronLilac}
           alt=""
           aria-hidden="true"
-          className="absolute top-24 left-[14%] w-20 md:w-28 opacity-50 pointer-events-none select-none hidden md:block"
-          animate={{ y: [0, -8, 0], rotate: [-10, 2, -10] }}
-          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-24 left-[14%] w-8 md:w-10 opacity-70 pointer-events-none select-none"
+          animate={{ y: [0, -10, 0], rotate: [-8, 6, -8] }}
+          transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.img
+          src={flowerSaffronLilac}
+          alt=""
+          aria-hidden="true"
+          className="absolute top-40 right-[28%] w-6 md:w-8 opacity-60 pointer-events-none select-none"
+          animate={{ y: [0, 12, 0], rotate: [14, -6, 14] }}
+          transition={{ duration: 13, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.img
+          src={flowerSaffronLilac}
+          alt=""
+          aria-hidden="true"
+          className="absolute bottom-16 left-[32%] w-7 md:w-9 opacity-60 pointer-events-none select-none hidden md:block"
+          animate={{ y: [0, -9, 0], rotate: [-18, -4, -18] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.img
           src={flowerSaffronLilac}
