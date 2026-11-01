@@ -10,6 +10,7 @@ import CartDrawer from "./components/CartDrawer";
 
 const ProductPage = lazy(() => import("./pages/ProductPage"));
 const FilieraPage = lazy(() => import("./pages/FilieraPage"));
+const DiconoDiNoiPage = lazy(() => import("./pages/DiconoDiNoiPage"));
 const TeamMemberPage = lazy(() => import("./pages/TeamMemberPage"));
 const CheckoutPage = lazy(() => import("./pages/CheckoutPage"));
 const CheckoutSuccess = lazy(() => import("./pages/CheckoutSuccess"));
@@ -54,6 +55,7 @@ const App = () => (
               <Route path="/" element={<Index />} />
               <Route path="/prodotti/:slug" element={<ProductPage />} />
               <Route path="/filiera" element={<FilieraPage />} />
+              <Route path="/dicono-di-noi" element={<DiconoDiNoiPage />} />
               <Route path="/team/:slug" element={<TeamMemberPage />} />
               <Route path="/checkout" element={<CheckoutPage />} />
               <Route path="/checkout/success" element={<CheckoutSuccess />} />
