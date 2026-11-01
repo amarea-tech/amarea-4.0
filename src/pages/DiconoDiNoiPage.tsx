@@ -250,51 +250,6 @@ const DiconoDiNoiPage = () => {
         </div>
       </section>
 
-      <section className="pb-24">
-        <div className="container mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="bg-[#F4EFE6] border border-[#E0DACE] rounded-3xl px-8 py-14 md:px-16 text-center"
-          >
-            <h2 className="font-display text-3xl md:text-5xl font-extrabold text-foreground mb-4">
-              Spin-off dell'Università Politecnica delle Marche
-            </h2>
-            <p className="font-body text-lg text-muted-foreground leading-relaxed mb-8 max-w-2xl mx-auto">
-              Amarea Cosmetics è uno spin-off accademico dell'Università Politecnica delle
-              Marche.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a
-                href="https://www.univpm.it/Entra/Ricerca_Diffusione_Imprese_Elenco_spin_off"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group inline-flex items-center gap-3 bg-primary text-primary-foreground font-body font-bold text-lg px-8 py-4 rounded-full hover:scale-105 transition-all duration-300"
-              >
-                Elenco degli spin-off UNIVPM
-                <ArrowUpRight
-                  size={18}
-                  className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300"
-                />
-              </a>
-              <a
-                href="https://www.univpm.it/Entra/Academic_Spin-off/Vetrina_Spin-off_UNIVPM/Life_Sciences_Spin-off_UNIVPM"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group inline-flex items-center gap-3 bg-transparent text-foreground font-body font-bold text-lg px-8 py-4 rounded-full border border-foreground/20 hover:border-foreground/40 transition-all duration-300"
-              >
-                Vetrina Life Sciences
-                <ArrowUpRight
-                  size={18}
-                  className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300"
-                />
-              </a>
-            </div>
-          </motion.div>
-        </div>
-      </section>
 
       <FooterSection />
     </div>
