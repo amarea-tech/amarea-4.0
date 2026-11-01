@@ -10,7 +10,7 @@ const navLinks = [
   { label: "Chi Siamo", href: "/#chi-siamo" },
   { label: "Prodotti", href: "/#prodotti" },
   { label: "Team", href: "/#team" },
-  { label: "Le aziende partner", href: "/filiera" },
+  { label: "Le Aziende Partner", href: "/filiera" },
 ];
 
 const Navbar = () => {
