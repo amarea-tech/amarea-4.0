@@ -4,7 +4,6 @@ import { ArrowUpRight, Award, Star, Medal } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import FooterSection from "@/components/FooterSection";
 import petalSaffron from "@/assets/petal-saffron.png";
-import petalLavender from "@/assets/petal-lavender.png";
 import flowerSaffronLilac from "@/assets/flower-saffron-lilac.png";
 
 type Riconoscimento = {
