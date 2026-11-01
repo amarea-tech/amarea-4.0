@@ -280,7 +280,7 @@ const DiconoDiNoiPage = () => {
           src={flowerSaffronLilac}
           alt=""
           aria-hidden="true"
-          className="absolute bottom-0 right-[16%] w-14 md:w-20 opacity-60 pointer-events-none select-none hidden md:block"
+          className="absolute bottom-0 right-[16%] w-9 md:w-12 opacity-60 pointer-events-none select-none hidden md:block"
           animate={{ y: [0, 8, 0], rotate: [30, 38, 30] }}
           transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
         />
