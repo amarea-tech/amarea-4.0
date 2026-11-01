@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
+
 import { motion } from "framer-motion";
 import { ArrowUpRight, Award, Star, Medal } from "lucide-react";
 import Navbar from "@/components/Navbar";
@@ -210,27 +212,52 @@ const ArticoloCard = ({
   </motion.article>
 );
 
+const PAGE_TITLE = "Dicono di noi — Riconoscimenti e stampa | Amarea Cosmetics";
+const PAGE_DESCRIPTION =
+  "I riconoscimenti e la rassegna stampa di Amarea Cosmetics, spin-off UNIVPM: Start Cup Marche, GammaDonna FAB50, Make it Circular, ANSA e Il Messaggero.";
+const PAGE_OG_URL = "https://amareacosmetics.com/dicono-di-noi";
+
+// react-helmet-async aggiunge i tag della pagina in fondo all'head senza
+// rimuovere quelli statici di index.html: qui li sovrascriviamo finché
+// l'utente è su questa pagina e li ripristiniamo appena ne esce.
+const STATIC_HEAD_OVERRIDES: Array<[string, string]> = [
+  ['meta[name="description"]', PAGE_DESCRIPTION],
+  ['meta[property="og:description"]', PAGE_DESCRIPTION],
+  ['meta[property="og:title"]', PAGE_TITLE],
+  ['meta[property="og:url"]', PAGE_OG_URL],
+  ['meta[name="twitter:title"]', PAGE_TITLE],
+  ['meta[name="twitter:description"]', PAGE_DESCRIPTION],
+];
+
 const DiconoDiNoiPage = () => {
+  useEffect(() => {
+    const overrides: Array<[Element, string]> = [];
+    for (const [selector, value] of STATIC_HEAD_OVERRIDES) {
+      const el = document.head.querySelector(`${selector}:not([data-rh])`);
+      if (el && el.getAttribute("content") !== value) {
+        overrides.push([el, el.getAttribute("content") ?? ""]);
+        el.setAttribute("content", value);
+      }
+    }
+    return () => {
+      for (const [el, original] of overrides) el.setAttribute("content", original);
+    };
+  }, []);
+
   return (
+
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Dicono di noi — Riconoscimenti e stampa | Amarea Cosmetics</title>
-        <meta
-          name="description"
-          content="I riconoscimenti e le voci che hanno accompagnato il percorso di Amarea Cosmetics, dal laboratorio al mercato."
-        />
-        <link rel="canonical" href="https://amareacosmetics.com/dicono-di-noi" />
+        <title>{PAGE_TITLE}</title>
+        <meta name="description" content={PAGE_DESCRIPTION} />
+
+        <link rel="canonical" href={PAGE_OG_URL} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://amareacosmetics.com/dicono-di-noi" />
-        <meta
-          property="og:title"
-          content="Dicono di noi — Riconoscimenti e stampa | Amarea Cosmetics"
-        />
-        <meta
-          property="og:description"
-          content="I riconoscimenti e le voci che hanno accompagnato il nostro percorso, dal laboratorio al mercato."
-        />
+        <meta property="og:url" content={PAGE_OG_URL} />
+        <meta property="og:title" content={PAGE_TITLE} />
+        <meta property="og:description" content={PAGE_DESCRIPTION} />
       </Helmet>
+
       <Navbar />
 
       <section className="relative overflow-hidden pt-40 pb-20 bg-[#F4EFE6] border-b border-[#E0DACE]">
