@@ -151,14 +151,15 @@ const FilieraPage = () => {
             className="max-w-3xl font-body text-lg text-muted-foreground leading-relaxed mb-14 space-y-5"
           >
             <p>
-              Amarea nasce per valorizzare il Made in Italy: le risorse, la ricerca e le competenze del nostro
-              Paese, trasformate in valore cosmetico italiano. Terre di Amarea porta questa idea nei territori,
-              con linee che raccontano le eccellenze di una regione.
+              Amarea vuole valorizzare le eccellenze del territorio italiano, costruendo una nuova geografia
+              cosmetica del Made in Italy. Con Terre di Amarea, ogni regione può diventare protagonista di una
+              linea di prodotti fondata sulla ricerca, attraverso le proprie filiere e specificità botaniche.
             </p>
             <p>
-              Abbiamo iniziato dalle Marche, la nostra terra. Con le aziende agricole marchigiane diamo nuovo
-              valore a ciò che resta dalle loro lavorazioni: vinacce, tepali di zafferano e foglie di olivo
-              diventano materia prima per la ricerca cosmetica, con una filiera tracciata e vicina a noi.
+              Abbiamo scelto di iniziare dalle Marche, la terra in cui Amarea è nata. Queste sono le aziende
+              agricole che collaborano con noi per la linea Marche di Terre di Amarea: con loro diamo nuovo
+              valore a ciò che resta dalle lavorazioni, e vinacce, tepali di zafferano e foglie di olivo
+              diventano materia prima per la ricerca cosmetica.
             </p>
           </motion.div>
 
