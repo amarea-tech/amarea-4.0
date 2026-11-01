@@ -9,8 +9,8 @@ const navLinks = [
   { label: "Home", href: "/#hero" },
   { label: "Chi Siamo", href: "/#chi-siamo" },
   { label: "Prodotti", href: "/#prodotti" },
-  { label: "Filiera", href: "/filiera" },
   { label: "Team", href: "/#team" },
+  { label: "Le aziende partner", href: "/filiera" },
 ];
 
 const Navbar = () => {
