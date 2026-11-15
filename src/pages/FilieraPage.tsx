@@ -7,6 +7,7 @@ import logoMercante from "@/assets/filiera-logo-mercante.png.asset.json";
 import logoTesoroDelleApi from "@/assets/filiera-logo-tesoro-delle-api.png.asset.json";
 import logoOlinda from "@/assets/filiera-logo-olinda.png.asset.json";
 import logoMetelis from "@/assets/filiera-logo-metelis-orizzontale.png.asset.json";
+import mappaItalia from "@/assets/mappa-italia-marche-partner.png.asset.json";
 
 type Partner = {
   name: string;
@@ -135,7 +136,7 @@ const FilieraPage = () => {
       </Helmet>
       <Navbar />
 
-      <section className="pt-40 pb-16 bg-[#F4EFE6] border-b border-[#E0DACE]">
+      <section className="pt-40 pb-10 bg-[#F4EFE6] border-b border-[#E0DACE]">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -156,14 +157,14 @@ const FilieraPage = () => {
         </div>
       </section>
 
-      <section className="py-16 md:py-24">
+      <section className="pt-10 pb-16 md:pt-14 md:pb-24">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="max-w-3xl font-body text-lg text-muted-foreground leading-relaxed mb-14 space-y-5"
+            className="mx-auto max-w-[800px] text-center font-body text-lg text-muted-foreground leading-relaxed mb-10 space-y-5"
           >
             <p>
               Amarea vuole valorizzare le eccellenze del territorio italiano, costruendo una nuova geografia
@@ -176,6 +177,21 @@ const FilieraPage = () => {
               valore a ciò che resta dalle lavorazioni, e vinacce, tepali di zafferano e foglie di olivo
               diventano materia prima per la ricerca cosmetica.
             </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.6 }}
+            className="mx-auto max-w-[1200px] mb-14"
+          >
+            <img
+              src={mappaItalia.url}
+              alt="L'Italia di Amarea: le aziende partner nelle Marche"
+              className="w-full h-auto rounded-3xl border border-border shadow-sm"
+              loading="lazy"
+            />
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
