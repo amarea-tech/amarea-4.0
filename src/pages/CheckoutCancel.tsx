@@ -14,7 +14,7 @@ const CheckoutCancel = () => (
     <Navbar />
     <main className="pt-36 pb-24 container mx-auto px-6 max-w-xl text-center">
       <XCircle className="mx-auto mb-6 text-muted-foreground" size={56} />
-      <h1 className="font-display text-4xl md:text-5xl font-extrabold text-foreground mb-4">
+      <h1 className="font-display text-4xl md:text-5xl font-semibold text-foreground mb-4">
         Pagamento annullato
       </h1>
       <p className="font-body text-muted-foreground mb-10">
@@ -23,7 +23,7 @@ const CheckoutCancel = () => (
       <div className="flex flex-wrap justify-center gap-4">
         <Link
           to="/checkout"
-          className="bg-foreground text-primary-foreground font-body font-bold px-8 py-4 rounded-full hover:scale-105 transition-transform"
+          className="bg-primary text-primary-foreground font-body font-bold px-8 py-4 rounded-full hover:scale-105 transition-transform"
         >
           Riprova il checkout
         </Link>

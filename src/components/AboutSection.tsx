@@ -9,8 +9,8 @@ const stats = [
 const AboutSection = () => {
   return (
     <section id="chi-siamo" className="py-24 md:py-32 bg-background relative overflow-hidden">
-      <div className="absolute top-1/4 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-72 h-72 bg-accent/5 rounded-full blur-3xl" />
+
+
 
       <div className="container mx-auto px-6 relative">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -20,11 +20,11 @@ const AboutSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <span className="inline-block bg-accent/10 text-accent font-body text-sm font-semibold px-5 py-2 rounded-full mb-6">
-              Chi siamo 🔬
+            <span className="section-label mb-6">
+              Chi siamo
             </span>
-            <h2 className="font-display text-4xl md:text-6xl font-extrabold text-foreground mb-8 leading-tight">
-              Dove la <span className="text-primary">ricerca</span> incontra la <span className="text-violet">bellezza</span>
+            <h2 className="font-display text-4xl md:text-6xl font-semibold text-foreground mb-8 leading-tight">
+              Dove la <span className="heading-emphasis">ricerca</span> incontra la <span className="heading-emphasis">bellezza</span>
             </h2>
             <div className="space-y-5 font-body text-muted-foreground leading-relaxed text-lg">
               <p>
@@ -40,7 +40,7 @@ const AboutSection = () => {
                 <img src={univpmLogo} alt="UNIVPM" className="h-10 w-auto" />
                 <div>
                   <p className="font-body text-xs text-muted-foreground">In collaborazione con</p>
-                  <p className="font-display font-bold text-sm text-foreground">UNIVPM</p>
+                  <p className="font-display font-semibold text-sm text-foreground">UNIVPM</p>
                 </div>
               </div>
             </div>
@@ -60,9 +60,9 @@ const AboutSection = () => {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
-                  className="bg-card rounded-3xl p-8 text-center card-hover cursor-default group"
+                  className="bg-card border border-border shadow-card rounded-3xl p-8 text-center card-hover cursor-default group"
                 >
-                  <p className="font-display text-4xl md:text-5xl font-extrabold text-primary group-hover:scale-110 transition-transform duration-500 inline-block">
+                  <p className="font-display text-4xl md:text-5xl font-semibold text-primary group-hover:scale-110 transition-transform duration-500 inline-block">
                     {stat.value}
                   </p>
                   <p className="font-body text-sm text-muted-foreground mt-2">{stat.label}</p>

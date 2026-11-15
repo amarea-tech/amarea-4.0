@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, ShoppingBag, X } from "lucide-react";
@@ -50,20 +51,20 @@ const Navbar = () => {
       }}
     >
       <div className="mx-4 mt-4">
-        <div className="bg-[#171717] rounded-full px-6 py-3 flex items-center justify-between shadow-lg">
+        <div className="bg-surface-dark rounded-full px-6 py-3 flex items-center justify-between shadow-lg">
           <Link to="/" className="flex items-center">
             <img src={logoImg} alt="Amarea Cosmetics" className="h-8 w-auto" />
           </Link>
 
-          <ul className="hidden md:flex items-center gap-1">
+          <ul className="hidden xl:flex items-center gap-1">
             {navLinks.map((link) => (
               <li key={link.href}>
-                <button
+                <Button variant="ghost"
                   onClick={() => handleNav(link.href)}
                   className="text-sm font-body font-medium text-primary-foreground hover:bg-primary-foreground/10 px-4 py-2 rounded-full transition-all duration-300"
                 >
                   {link.label}
-                </button>
+                </Button>
               </li>
             ))}
           </ul>
@@ -71,12 +72,12 @@ const Navbar = () => {
           <div className="flex items-center gap-2">
             <a
               href="mailto:info@amareacosmetics.com?subject=Richiesta%20informazioni%20%E2%80%93%20Amarea%20Cosmetics"
-              className="hidden md:block bg-primary text-primary-foreground font-body font-semibold text-sm px-6 py-2 rounded-full hover:scale-105 transition-transform duration-300"
+              className="hidden xl:block bg-primary text-primary-foreground font-body font-semibold text-sm px-6 py-2 rounded-full hover:scale-105 transition-transform duration-300"
             >
               Contattaci 🌸
             </a>
 
-            <button
+            <Button variant="ghost"
               onClick={openCart}
               aria-label={`Apri carrello${count > 0 ? ` (${count} articoli)` : ""}`}
               className="relative text-primary-foreground hover:bg-primary-foreground/10 p-2 rounded-full transition-colors"
@@ -87,16 +88,16 @@ const Navbar = () => {
                   {count}
                 </span>
               )}
-            </button>
+            </Button>
 
-            <button
-              className="md:hidden text-primary-foreground"
+            <Button variant="ghost"
+              className="xl:hidden text-primary-foreground"
               onClick={() => setOpen(!open)}
               aria-label={open ? "Chiudi menu" : "Apri menu"}
               aria-expanded={open}
             >
               {open ? <X size={24} /> : <Menu size={24} />}
-            </button>
+            </Button>
           </div>
         </div>
       </div>
@@ -107,7 +108,7 @@ const Navbar = () => {
             initial={{ opacity: 0, y: -20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -20, scale: 0.95 }}
-            className="md:hidden mx-4 mt-2 bg-foreground/95 backdrop-blur-xl rounded-3xl overflow-hidden"
+            className="xl:hidden mx-4 mt-2 bg-surface-dark/95 backdrop-blur-xl rounded-3xl overflow-hidden"
           >
             <ul className="flex flex-col items-center gap-2 py-6">
               {navLinks.map((link, i) => (
@@ -117,12 +118,12 @@ const Navbar = () => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.05 }}
                 >
-                  <button
+                  <Button variant="ghost"
                     onClick={() => handleNav(link.href)}
                     className="text-lg font-body font-medium text-primary-foreground/80 hover:text-primary-foreground px-6 py-2 rounded-full hover:bg-primary-foreground/10 transition-all"
                   >
                     {link.label}
-                  </button>
+                  </Button>
                 </motion.li>
               ))}
             </ul>

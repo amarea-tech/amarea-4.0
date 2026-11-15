@@ -1,5 +1,9 @@
 # Amarea 4.0 — Ecommerce roadmap
 
+## Aggiornamento identità visiva
+- [x] Uniformare palette e tipografia globali, hero, etichette, schede e pulsanti senza cambiare testi o struttura.
+- [x] Verificare home e pagine interne su desktop e mobile; non pubblicare.
+
 ## Vincoli
 - Solo Supabase esterno (`cgjzoktwcblrdwasakxw`). No Lovable Cloud.
 - `supabase/functions/newsletter-subscribe` e Brevo: intoccabili.

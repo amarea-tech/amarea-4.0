@@ -3,6 +3,11 @@ import { HelmetProvider } from "react-helmet-async";
 import App from "./App.tsx";
 import "./index.css";
 
+const fontStylesheet = document.createElement("link");
+fontStylesheet.rel = "stylesheet";
+fontStylesheet.href = "https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,500;1,600&family=DM+Sans:wght@300;400;500;600;700&display=swap";
+document.head.appendChild(fontStylesheet);
+
 // Auto-reload when a stale chunk fails to load after a redeploy
 const RELOAD_KEY = "__chunk_reload_attempt";
 const handleChunkError = (message?: string) => {
@@ -22,7 +27,9 @@ window.addEventListener("unhandledrejection", (e) =>
 );
 window.addEventListener("load", () => sessionStorage.removeItem(RELOAD_KEY));
 
-createRoot(document.getElementById("root")!).render(
+const rootElement = document.getElementById("root");
+if (!rootElement) throw new Error("Missing application root");
+createRoot(rootElement).render(
   <HelmetProvider>
     <App />
   </HelmetProvider>

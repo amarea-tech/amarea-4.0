@@ -1,17 +1,17 @@
+import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import heroBg from "@/assets/hero-bg.jpg";
 import logo from "@/assets/amarea-logo-transparent.png";
 
 const HeroSection = () => {
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-foreground pt-28 md:pt-0">
-      <div className="absolute top-20 left-10 w-72 h-72 bg-primary/30 rounded-full blur-3xl animate-blob" />
-      <div className="absolute bottom-20 right-10 w-96 h-96 bg-secondary/20 rounded-full blur-3xl animate-blob" style={{ animationDelay: "2s" }} />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-accent/10 rounded-full blur-3xl animate-blob" style={{ animationDelay: "4s" }} />
+    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden dark-surface bg-surface-dark pt-28 pb-28 md:pt-32 md:pb-32">
 
-      <div className="absolute inset-0 opacity-30">
+      <div className="absolute inset-0 opacity-20">
         <img src={heroBg} alt="" className="w-full h-full object-cover" />
       </div>
+
+      <div className="absolute inset-0 hero-overlay" />
 
       <div className="relative z-10 text-center px-6 max-w-5xl">
         <motion.div
@@ -23,8 +23,7 @@ const HeroSection = () => {
           <div className="mb-4">
             <img src={logo} alt="Amarea Cosmetics" className="w-80 md:w-[28rem]" />
           </div>
-          <div className="inline-flex items-center gap-2 bg-primary/20 border border-primary/30 text-primary-foreground px-5 py-2 rounded-full font-body text-sm font-medium">
-            <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+          <div className="font-body text-xs uppercase tracking-[0.18em] text-soft max-w-2xl leading-relaxed">
             Start-up Innovativa , Spin-off dell'Università Politecnica delle Marche
           </div>
         </motion.div>
@@ -33,13 +32,13 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="font-display text-5xl md:text-7xl lg:text-8xl font-extrabold text-primary-foreground leading-[0.95] tracking-tight"
+          className="font-display text-5xl md:text-7xl lg:text-8xl font-semibold text-primary-foreground leading-[1.1] tracking-normal"
         >
           Ispirata dalla{" "}
-          <span className="text-primary">natura</span>,{" "}
+          <span className="heading-emphasis">natura</span>,{" "}
           <br className="hidden md:block" />
           arricchita dalla{" "}
-          <span className="text-violet">scienza</span>
+          <span className="heading-emphasis">scienza</span>
         </motion.h1>
 
         <motion.p
@@ -57,18 +56,19 @@ const HeroSection = () => {
           transition={{ duration: 0.8, delay: 0.7 }}
           className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
         >
-          <button
+          <Button
             onClick={() => document.querySelector("#prodotti")?.scrollIntoView({ behavior: "smooth" })}
-            className="bg-primary text-primary-foreground font-body font-bold text-lg px-10 py-4 rounded-full hover:scale-105 hover:shadow-[0_0_40px_hsl(var(--primary)/0.4)] transition-all duration-500"
+            className="font-body text-lg px-10 py-4 h-auto shadow-card hover:shadow-card-hover"
           >
             Scopri i Prodotti →
-          </button>
-          <button
+          </Button>
+          <Button
             onClick={() => document.querySelector("#chi-siamo")?.scrollIntoView({ behavior: "smooth" })}
-            className="border-2 border-primary-foreground/20 text-primary-foreground font-body font-medium text-lg px-10 py-4 rounded-full hover:bg-primary-foreground/10 transition-all duration-500"
+            variant="on-dark"
+            className="font-body text-lg px-10 py-4 h-auto"
           >
             Chi Siamo
-          </button>
+          </Button>
         </motion.div>
       </div>
 

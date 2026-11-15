@@ -5,8 +5,8 @@ import { teamMembers } from "@/data/teamData";
 const TeamSection = () => {
   const flowers = ["🌸", "🌼", "🌺", "🌷", "🌻", "💮", "🌹", "🏵️", "💐"];
   return (
-    <section id="team" className="py-24 md:py-32 bg-card relative overflow-hidden">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl" />
+    <section id="team" className="py-24 md:py-32 bg-muted relative overflow-hidden">
+
 
       <div className="container mx-auto px-6 relative">
         <motion.div
@@ -16,11 +16,11 @@ const TeamSection = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <span className="inline-block bg-violet/15 text-violet font-body text-sm font-semibold px-5 py-2 rounded-full mb-6">
-            Il nostro team 👩‍🔬
-          </span>
-          <h2 className="font-display text-4xl md:text-6xl font-extrabold text-card-foreground">
-             Esperti al servizio dell'<span className="text-primary">innovazione</span>
+          <span className="section-label mb-6">
+              Il nostro team
+            </span>
+          <h2 className="font-display text-4xl md:text-6xl font-semibold text-card-foreground">
+             Esperti al servizio dell'<span className="heading-emphasis">innovazione</span>
           </h2>
            <p className="font-body text-muted-foreground mt-4 max-w-2xl mx-auto text-lg">
              Un team di ricercatori impegnati nello sviluppo di formulazioni cosmetiche naturali ed ecosostenibili
@@ -38,7 +38,7 @@ const TeamSection = () => {
             >
               <Link
                 to={`/team/${member.slug}`}
-                className="group flex flex-col bg-background rounded-3xl p-6 card-hover border border-border hover:border-primary/30 transition-all h-full"
+                className="group flex flex-col bg-background rounded-3xl p-6 card-hover shadow-card border border-border hover:border-primary/30 transition-all h-full"
               >
                 <div className="flex items-center gap-4 mb-4">
                   <div className="relative shrink-0">
@@ -52,8 +52,8 @@ const TeamSection = () => {
                     </div>
                   </div>
                   <div>
-                    <h3 className="font-display text-lg font-bold text-foreground">{member.name}</h3>
-                    <p className="font-body text-xs text-violet font-semibold tracking-wide">{member.role}</p>
+                    <h3 className="font-display text-lg font-semibold text-foreground">{member.name}</h3>
+                    <p className="font-body text-xs text-primary font-semibold tracking-wide">{member.role}</p>
                     {member.email && (
                       <a
                         href={`mailto:${member.email}`}

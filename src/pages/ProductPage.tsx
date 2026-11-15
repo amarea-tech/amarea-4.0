@@ -14,14 +14,13 @@ import productCatria from "@/assets/product-catria.jpg";
 
 const productData: Record<
   string,
-  { name: string; desc: string; details?: string; gradient: string; subtitle: string; image: string; seoDescription: string }
+  { name: string; desc: string; details?: string; subtitle: string; image: string; seoDescription: string }
 > = {
   conero: {
     name: "Conero",
     subtitle: "Purifying Face Cream",
     desc: "Con foglie di ulivo e attivi riequilibranti, aiuta a purificare la pelle e regolare l'eccesso di sebo.",
     seoDescription: "Conero è la crema viso purificante di Amarea Cosmetics, formulata con foglie di ulivo e attivi botanici riequilibranti per aiutare a purificare la pelle e regolare l'eccesso di sebo. Parte della collezione Monti Italiani, ispirata al territorio marchigiano.",
-    gradient: "from-primary/20 to-lime/20",
     image: productConero,
   },
   sibilla: {
@@ -29,7 +28,6 @@ const productData: Record<
     subtitle: "Anti-Age Cream",
     desc: "Formulata con attivi rigeneranti derivati da fiori di zafferano e vinacce selezionate. Aiuta a contrastare i segni del tempo.",
     seoDescription: "Sibilla è la crema viso anti-età di Amarea Cosmetics, formulata con attivi rigeneranti derivati da fiori di zafferano e vinacce marchigiane selezionate tramite upcycling. Parte della collezione Monti Italiani, sviluppata dal team di ricerca dell'Università Politecnica delle Marche.",
-    gradient: "from-violet/20 to-primary/20",
     image: productSibilla,
   },
   catria: {
@@ -37,7 +35,6 @@ const productData: Record<
     subtitle: "Nourishing Face Cream",
     desc: "Nutre e idrata grazie a una formulazione leggera arricchita con bioresidui del caffè.",
     seoDescription: "Catria è la crema viso nutriente di Amarea Cosmetics, formulata con bioresidui del caffè per un'idratazione ricca ma leggera. Parte della collezione Monti Italiani, ispirata alle vette dell'Appennino marchigiano.",
-    gradient: "from-secondary/20 to-coral/20",
     image: productCatria,
   },
 };
@@ -77,7 +74,7 @@ const ProductPage = () => {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
-          <p className="font-display text-6xl font-extrabold text-foreground mb-4">404</p>
+          <p className="font-display text-6xl font-semibold text-foreground mb-4">404</p>
           <p className="text-muted-foreground font-body text-lg">Prodotto non trovato.</p>
           <Link
             to="/"
@@ -126,7 +123,7 @@ const ProductPage = () => {
         </script>
       </Helmet>
       <Navbar />
-      <div className={`pt-28 pb-16 bg-gradient-to-br ${product.gradient} min-h-[80vh] flex items-center`}>
+      <div className={`pt-28 pb-16 bg-muted min-h-[80vh] flex items-center`}>
         <div className="container mx-auto px-6">
           <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }}>
             <Link
@@ -143,7 +140,7 @@ const ProductPage = () => {
               initial={{ opacity: 0, scale: 0.9, rotate: -2 }}
               animate={{ opacity: 1, scale: 1, rotate: 0 }}
               transition={{ duration: 0.8 }}
-              className="overflow-hidden rounded-3xl bg-card shadow-2xl"
+              className="overflow-hidden rounded-3xl bg-card shadow-card"
             >
               <img
                 src={product.image}
@@ -160,11 +157,11 @@ const ProductPage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <span className="inline-block bg-primary text-primary-foreground text-xs tracking-wide uppercase font-body font-bold px-5 py-2 rounded-full mb-6">
-                {dbProduct?.badge_label ?? (purchasable ? "Disponibile ✨" : "Prossimamente ✨")}
+              <span className="section-label mb-6">
+                {dbProduct?.badge_label ?? (purchasable ? "Disponibile" : "Prossimamente")}
               </span>
-              <h1 className="font-display text-5xl md:text-7xl font-extrabold text-foreground mb-2">{product.name}</h1>
-              <p className="font-body text-lg text-violet font-semibold mb-6">{product.subtitle}</p>
+              <h1 className="font-display text-5xl md:text-7xl font-semibold text-foreground mb-2">{product.name}</h1>
+              <p className="font-body text-lg text-primary font-semibold mb-6">{product.subtitle}</p>
               <p className="font-body text-xl text-muted-foreground leading-relaxed mb-4">{product.desc}</p>
               <p className="font-body text-lg text-muted-foreground/80 leading-relaxed mb-8">{product.details}</p>
               <div className="w-20 h-1 bg-primary rounded-full mb-8" />
@@ -179,7 +176,7 @@ const ProductPage = () => {
 
                   <a
                     href="mailto:info@amareacosmetics.it"
-                    className="group inline-flex items-center gap-3 bg-foreground text-primary-foreground font-body font-bold text-lg px-8 py-4 rounded-full hover:scale-105 transition-all duration-500"
+                    className="group inline-flex items-center gap-3 bg-primary text-primary-foreground font-body font-bold text-lg px-8 py-4 rounded-full hover:scale-105 transition-all duration-500"
                   >
                     Contattaci per info
                     <ArrowUpRight

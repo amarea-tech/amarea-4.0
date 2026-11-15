@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import petalSaffron from "@/assets/petal-saffron.png";
+import petalSaffron from "@/assets/petal-saffron-lilac.png";
 import petalLavender from "@/assets/petal-lavender.png";
 
 interface Petal {

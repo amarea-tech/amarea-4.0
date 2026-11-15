@@ -45,7 +45,7 @@ const CheckoutSuccess = () => {
           ) : (
             <CheckCircle2 className="mx-auto mb-6 text-primary" size={56} />
           )}
-          <h1 className="font-display text-4xl md:text-5xl font-extrabold text-foreground mb-4">
+          <h1 className="font-display text-4xl md:text-5xl font-semibold text-foreground mb-4">
             {pending ? "Stiamo confermando il pagamento" : "Grazie per il tuo ordine!"}
           </h1>
           <p className="font-body text-muted-foreground">
@@ -58,7 +58,7 @@ const CheckoutSuccess = () => {
         {isLoading && token && <p className="font-body text-center text-muted-foreground">Caricamento…</p>}
 
         {data && !pending && (
-          <div className="bg-card rounded-3xl p-8 shadow-lg">
+          <div className="bg-card rounded-3xl p-8 shadow-card">
             <p className="font-body text-sm text-muted-foreground mb-6">
               Ordine n. <span className="font-bold text-foreground">{data.order_number}</span>
             </p>
@@ -102,7 +102,7 @@ const CheckoutSuccess = () => {
         <div className="text-center mt-10">
           <Link
             to="/"
-            className="inline-block bg-foreground text-primary-foreground font-body font-bold px-8 py-4 rounded-full hover:scale-105 transition-transform"
+            className="inline-block bg-primary text-primary-foreground font-body font-bold px-8 py-4 rounded-full hover:scale-105 transition-transform"
           >
             Torna alla home
           </Link>

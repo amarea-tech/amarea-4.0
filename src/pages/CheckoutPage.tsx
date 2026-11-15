@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
@@ -162,11 +163,11 @@ const CheckoutPage = () => {
       <div className="min-h-screen bg-background">
         <Navbar />
         <div className="pt-36 pb-24 container mx-auto px-6 text-center">
-          <h1 className="font-display text-4xl font-extrabold text-foreground mb-4">Checkout</h1>
+          <h1 className="font-display text-4xl font-semibold text-foreground mb-4">Checkout</h1>
           <p className="font-body text-muted-foreground mb-8">Il tuo carrello è vuoto.</p>
           <Link
             to="/#prodotti"
-            className="inline-block bg-foreground text-primary-foreground font-body font-bold px-8 py-4 rounded-full hover:scale-105 transition-transform"
+            className="inline-block bg-primary text-primary-foreground font-body font-bold px-8 py-4 rounded-full hover:scale-105 transition-transform"
           >
             Scopri i prodotti
           </Link>
@@ -191,15 +192,15 @@ const CheckoutPage = () => {
         >
           <ArrowLeft size={16} /> Continua lo shopping
         </Link>
-        <h1 className="font-display text-4xl md:text-5xl font-extrabold text-foreground mb-10">Checkout</h1>
+        <h1 className="font-display text-4xl md:text-5xl font-semibold text-foreground mb-10">Checkout</h1>
 
         <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-12">
           <form onSubmit={handleSubmit} className="space-y-5">
-            <h2 className="font-display text-2xl font-bold text-foreground">Contatti</h2>
+            <h2 className="font-display text-2xl font-semibold text-foreground">Contatti</h2>
             <input required type="email" placeholder="Email" value={form.email} onChange={set("email")} className={inputClass} />
             <input type="tel" placeholder="Telefono (opzionale)" value={form.phone} onChange={set("phone")} className={inputClass} />
 
-            <h2 className="font-display text-2xl font-bold text-foreground pt-4">Indirizzo di spedizione</h2>
+            <h2 className="font-display text-2xl font-semibold text-foreground pt-4">Indirizzo di spedizione</h2>
             <div className="grid sm:grid-cols-2 gap-5">
               <input required placeholder="Nome" value={form.first_name} onChange={set("first_name")} className={inputClass} />
               <input required placeholder="Cognome" value={form.last_name} onChange={set("last_name")} className={inputClass} />
@@ -219,14 +220,14 @@ const CheckoutPage = () => {
               ))}
             </select>
 
-            <button
+            <Button variant="ghost"
               type="submit"
               disabled={submitting || !storeOpen}
-              className="inline-flex items-center gap-3 bg-foreground text-primary-foreground font-body font-bold text-lg px-8 py-4 rounded-full hover:scale-105 transition-all duration-500 disabled:opacity-50 disabled:hover:scale-100"
+              className="inline-flex items-center gap-3 bg-primary text-primary-foreground font-body font-bold text-lg px-8 py-4 rounded-full hover:scale-105 transition-all duration-500 disabled:opacity-50 disabled:hover:scale-100"
             >
               {submitting && <Loader2 className="animate-spin" size={18} />}
               Vai al pagamento
-            </button>
+            </Button>
             {stripeUrl && (
               <div className="rounded-2xl border border-border bg-card p-4 font-body text-foreground space-y-3">
                 <p>Se la pagina di pagamento non si è aperta, premi qui:</p>
@@ -234,7 +235,7 @@ const CheckoutPage = () => {
                   href={stripeUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block bg-foreground text-primary-foreground font-bold px-6 py-3 rounded-full"
+                  className="inline-block bg-primary text-primary-foreground font-bold px-6 py-3 rounded-full"
                 >
                   Apri Stripe
                 </a>
@@ -245,8 +246,8 @@ const CheckoutPage = () => {
             </p>
           </form>
 
-          <aside className="bg-card rounded-3xl p-8 h-fit shadow-lg">
-            <h2 className="font-display text-2xl font-bold text-foreground mb-6">Riepilogo</h2>
+          <aside className="bg-card rounded-3xl p-8 h-fit shadow-card">
+            <h2 className="font-display text-2xl font-semibold text-foreground mb-6">Riepilogo</h2>
             <ul className="space-y-4 mb-6">
               {lines.map((l) => (
                 <li key={l.id} className="flex justify-between font-body">

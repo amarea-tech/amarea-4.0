@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -10,7 +11,6 @@ interface ProductZone {
   slug: string;
   left: string;
   width: string;
-  glowColor: string;
 }
 
 const products: ProductZone[] = [
@@ -20,7 +20,6 @@ const products: ProductZone[] = [
     slug: "sibilla",
     left: "5%",
     width: "30%",
-    glowColor: "280, 55%, 72%",
   },
   {
     name: "Conero",
@@ -28,7 +27,6 @@ const products: ProductZone[] = [
     slug: "conero",
     left: "35%",
     width: "30%",
-    glowColor: "155, 55%, 30%",
   },
   {
     name: "Catria",
@@ -36,7 +34,6 @@ const products: ProductZone[] = [
     slug: "catria",
     left: "65%",
     width: "30%",
-    glowColor: "38, 90%, 60%",
   },
 ];
 
@@ -70,10 +67,8 @@ const ProductsSection = () => {
   const recommended = result ? products.find((p) => p.slug === result) : null;
 
   return (
-    <section id="prodotti" className="py-24 md:py-36 bg-foreground relative overflow-hidden">
+    <section id="prodotti" className="py-24 md:py-36 dark-surface bg-surface-dark relative overflow-hidden">
       {/* Ambient blurs */}
-      <div className="absolute top-20 left-20 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 right-20 w-96 h-96 bg-secondary/5 rounded-full blur-3xl" />
 
       <div className="container mx-auto px-6 relative">
         {/* Section header */}
@@ -84,7 +79,7 @@ const ProductsSection = () => {
           transition={{ duration: 1, ease: "easeOut" }}
           className="text-center mb-16 md:mb-20"
         >
-          <span className="inline-block text-primary-foreground/40 font-body text-xs tracking-[0.3em] uppercase mb-6">
+          <span className="section-label mb-6">
             Amarea Cosmetics
           </span>
           <div>
@@ -93,24 +88,20 @@ const ProductsSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="inline-flex items-center gap-3 mb-6 px-6 py-2.5 rounded-full border border-primary/50 bg-gradient-to-r from-primary/80 via-primary to-primary/80 backdrop-blur-sm relative overflow-hidden"
+              className="inline-flex items-center gap-3 mb-6 px-6 py-2.5 rounded-full bg-soft text-soft-foreground"
             >
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-foreground opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary-foreground"></span>
-              </span>
-              <span className="font-body text-[0.7rem] md:text-xs tracking-[0.35em] uppercase text-primary-foreground font-semibold">
+              <span className="font-body text-[0.7rem] md:text-xs tracking-[0.18em] uppercase text-soft-foreground font-semibold">
                 Prossimamente
               </span>
-              <span className="h-3 w-px bg-primary-foreground/30"></span>
-              <span className="font-display italic text-xs md:text-sm text-primary-foreground font-medium tracking-wide">
+              <span className="h-3 w-px bg-primary/30"></span>
+              <span className="font-display italic text-xs md:text-sm text-soft-foreground font-medium">
                 Dicembre 2026
               </span>
             </motion.div>
           </div>
-          <h2 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold text-primary-foreground tracking-tight">
+          <h2 className="font-display text-4xl md:text-6xl lg:text-7xl font-semibold text-primary-foreground tracking-normal">
             Terre di{" "}
-            <span className="italic text-violet">Amarea</span>
+            <span className="heading-emphasis">Amarea</span>
           </h2>
           <p className="font-body text-primary-foreground mt-5 text-base md:text-lg max-w-xl mx-auto leading-relaxed">
             Tre creme ispirate ai promontori delle Marche, formulate con ingredienti botanici rigenerati.
@@ -125,13 +116,13 @@ const ProductsSection = () => {
             className="mt-10 max-w-2xl mx-auto"
           >
             {!quizOpen ? (
-              <button
+              <Button variant="ghost"
                 onClick={() => setQuizOpen(true)}
                 className="group inline-flex items-center gap-3 px-7 py-3.5 border border-primary-foreground/30 rounded-full text-primary-foreground hover:bg-primary-foreground hover:text-foreground transition-all duration-500"
               >
                 <span className="font-body text-xs tracking-[0.25em] uppercase">Amarea App</span>
                 <span className="font-display italic text-sm">scopri la tua crema</span>
-              </button>
+              </Button>
             ) : (
               <motion.div
                 initial={{ opacity: 0, scale: 0.98 }}
@@ -143,7 +134,7 @@ const ProductsSection = () => {
                   <span className="font-body text-[10px] md:text-xs tracking-[0.3em] uppercase text-primary-foreground/50">
                     Amarea App
                   </span>
-                  <button
+                  <Button variant="ghost"
                     onClick={() => {
                       setQuizOpen(false);
                       resetQuiz();
@@ -151,7 +142,7 @@ const ProductsSection = () => {
                     className="text-primary-foreground/40 hover:text-primary-foreground text-xs tracking-wider uppercase transition-colors"
                   >
                     Chiudi
-                  </button>
+                  </Button>
                 </div>
 
                 {!result ? (
@@ -168,17 +159,17 @@ const ProductsSection = () => {
                           { v: "grassa", l: "Grassa" },
                           { v: "matura", l: "Matura" },
                         ].map((opt) => (
-                          <button
+                          <Button variant="ghost"
                             key={opt.v}
                             onClick={() => handleAnswer("skin", opt.v)}
                             className={`px-4 py-2 rounded-full border text-sm font-body transition-all ${
                               answers.skin === opt.v
-                                ? "bg-primary-foreground text-foreground border-primary-foreground"
+                                ? "bg-primary text-primary-foreground border-primary"
                                 : "border-primary-foreground/25 text-primary-foreground/80 hover:border-primary-foreground/60"
                             }`}
                           >
                             {opt.l}
-                          </button>
+                          </Button>
                         ))}
                       </div>
                     </div>
@@ -194,17 +185,17 @@ const ProductsSection = () => {
                           { v: "30-44", l: "30 – 44" },
                           { v: "45+", l: "45+" },
                         ].map((opt) => (
-                          <button
+                          <Button variant="ghost"
                             key={opt.v}
                             onClick={() => handleAnswer("age", opt.v)}
                             className={`px-4 py-2 rounded-full border text-sm font-body transition-all ${
                               answers.age === opt.v
-                                ? "bg-primary-foreground text-foreground border-primary-foreground"
+                                ? "bg-primary text-primary-foreground border-primary"
                                 : "border-primary-foreground/25 text-primary-foreground/80 hover:border-primary-foreground/60"
                             }`}
                           >
                             {opt.l}
-                          </button>
+                          </Button>
                         ))}
                       </div>
                     </div>
@@ -220,17 +211,17 @@ const ProductsSection = () => {
                           { v: "purificare", l: "Purificare" },
                           { v: "anti-age", l: "Anti-età" },
                         ].map((opt) => (
-                          <button
+                          <Button variant="ghost"
                             key={opt.v}
                             onClick={() => handleAnswer("goal", opt.v)}
                             className={`px-4 py-2 rounded-full border text-sm font-body transition-all ${
                               answers.goal === opt.v
-                                ? "bg-primary-foreground text-foreground border-primary-foreground"
+                                ? "bg-primary text-primary-foreground border-primary"
                                 : "border-primary-foreground/25 text-primary-foreground/80 hover:border-primary-foreground/60"
                             }`}
                           >
                             {opt.l}
-                          </button>
+                          </Button>
                         ))}
                       </div>
                     </div>
@@ -247,15 +238,11 @@ const ProductsSection = () => {
                         Ti consigliamo
                       </p>
                       <div
-                        className="w-3 h-3 rounded-full mx-auto mb-4"
-                        style={{
-                          backgroundColor: `hsl(${recommended.glowColor})`,
-                          boxShadow: `0 0 24px hsla(${recommended.glowColor}, 0.6)`,
-                        }}
+                        className="w-3 h-3 rounded-full mx-auto mb-4 bg-soft"
                       />
                       <h3
-                        className="font-display text-4xl md:text-5xl italic mb-2"
-                        style={{ color: `hsl(${recommended.glowColor})` }}
+                        className="font-display text-4xl md:text-5xl heading-emphasis mb-2"
+
                       >
                         {recommended.name}
                       </h3>
@@ -266,16 +253,16 @@ const ProductsSection = () => {
                         <Link
                           to={`/prodotti/${recommended.slug}`}
                           onClick={() => window.scrollTo(0, 0)}
-                          className="px-6 py-3 rounded-full bg-primary-foreground text-foreground font-body text-xs tracking-[0.2em] uppercase hover:opacity-90 transition-opacity"
+                          className="px-6 py-3 rounded-full bg-primary text-primary-foreground font-body text-xs tracking-[0.2em] uppercase hover:opacity-90 transition-opacity"
                         >
                           Scopri {recommended.name}
                         </Link>
-                        <button
+                        <Button variant="ghost"
                           onClick={resetQuiz}
                           className="px-6 py-3 rounded-full border border-primary-foreground/30 text-primary-foreground font-body text-xs tracking-[0.2em] uppercase hover:bg-primary-foreground/10 transition-colors"
                         >
                           Rifai il test
-                        </button>
+                        </Button>
                       </div>
                     </motion.div>
                   )
@@ -293,24 +280,6 @@ const ProductsSection = () => {
           transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
           className="relative max-w-5xl mx-auto"
         >
-          {/* Storytelling ambient glow behind image */}
-          {hoveredProduct && !isMobile && (
-            <motion.div
-              className="absolute inset-0 rounded-3xl pointer-events-none z-0"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.8 }}
-              style={{
-                background: `radial-gradient(ellipse at ${
-                  hoveredProduct === "sibilla" ? "25%" : hoveredProduct === "conero" ? "50%" : "75%"
-                } 60%, hsla(${
-                  products.find((p) => p.slug === hoveredProduct)?.glowColor
-                }, 0.08) 0%, transparent 70%)`,
-              }}
-            />
-          )}
-
           <div className="relative rounded-3xl overflow-hidden">
             {/* Main image with subtle zoom on hover */}
             <motion.img
@@ -343,20 +312,6 @@ const ProductsSection = () => {
                     onMouseLeave={() => setHoveredProduct(null)}
                     onClick={() => window.scrollTo(0, 0)}
                   >
-                    {/* Soft focus glow */}
-                    <motion.div
-                      className="absolute inset-0 pointer-events-none"
-                      animate={
-                        isHovered
-                          ? { opacity: 1 }
-                          : { opacity: 0 }
-                      }
-                      transition={{ duration: 0.6 }}
-                      style={{
-                        background: `radial-gradient(ellipse at 50% 70%, hsla(${product.glowColor}, 0.12) 0%, transparent 60%)`,
-                      }}
-                    />
-
                     {/* Product label */}
                     <motion.div
                       className="absolute bottom-[12%] left-0 right-0 flex justify-center pointer-events-none"
@@ -392,8 +347,7 @@ const ProductsSection = () => {
                   onClick={() => window.scrollTo(0, 0)}
                 >
                   <div
-                    className="w-2.5 h-2.5 rounded-full mx-auto mb-2"
-                    style={{ backgroundColor: `hsl(${product.glowColor})` }}
+                    className="w-2.5 h-2.5 rounded-full mx-auto mb-2 bg-soft"
                   />
                   <p className="font-display text-sm font-semibold text-primary-foreground/80">
                     {product.name}
@@ -426,16 +380,9 @@ const ProductsSection = () => {
                     onClick={() => window.scrollTo(0, 0)}
                   >
                     <div
-                      className="w-2 h-2 rounded-full mx-auto mb-2 transition-all duration-500"
-                      style={{
-                        backgroundColor: `hsl(${product.glowColor})`,
-                        boxShadow:
-                          hoveredProduct === product.slug
-                            ? `0 0 16px hsla(${product.glowColor}, 0.5)`
-                            : "none",
-                      }}
+                      className="w-2 h-2 rounded-full mx-auto mb-2 bg-soft transition-all duration-500"
                     />
-                    <p className="font-display text-base font-semibold" style={{ color: `hsl(${product.glowColor})` }}>
+                    <p className="font-display text-base font-semibold text-soft" >
                       {product.name}
                     </p>
                   </Link>

@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Mail, Check, Loader2, Sparkles, Clock, Gem } from "lucide-react";
@@ -42,27 +43,27 @@ const NewsletterBlock = () => {
   ];
 
   return (
-    <section id="contatti" className="border-t border-[#E0DACE] bg-[#F4EFE6]">
+    <section id="contatti" className="border-t border-border bg-muted">
       <div className="max-w-7xl mx-auto px-6 md:px-10 py-20 md:py-28">
         <div className="max-w-2xl mx-auto">
           {/* Content */}
           <div>
-            <h3 className="font-display md:text-5xl lg:text-6xl leading-[1.05] text-left text-5xl text-[#2a2927] rounded-md shadow">
+            <h3 className="font-display md:text-5xl lg:text-6xl leading-[1.05] text-left text-5xl text-foreground rounded-md shadow">
               Sibilla<br />Presto disponibile
             </h3>
 
             <ul className="mt-8 flex flex-col gap-3 font-bold">
               {benefits.map(({ icon: Icon, text }) => (
                 <li key={text} className="flex items-center gap-3">
-                  <span className="flex-shrink-0 w-7 h-7 rounded-full bg-[#1F2520] text-[#F4EFE6] flex items-center justify-center">
+                  <span className="flex-shrink-0 w-7 h-7 rounded-full bg-primary text-primary-foreground flex items-center justify-center">
                     <Icon size={13} strokeWidth={1.8} />
                   </span>
-                  <span className="font-body text-sm text-[#1F2520]">{text}</span>
+                  <span className="font-body text-sm text-foreground">{text}</span>
                 </li>
               ))}
             </ul>
 
-            <div className="mt-10 pt-8 border-t border-[#E0DACE]">
+            <div className="mt-10 pt-8 border-t border-border">
           <AnimatePresence mode="wait">
             {subscribed ? (
               <motion.div
@@ -71,13 +72,13 @@ const NewsletterBlock = () => {
                 animate={{ opacity: 1, y: 0 }}
                 className="max-w-md"
               >
-                <span className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-[#1F2520] text-[#F4EFE6] mb-5">
+                <span className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary text-primary-foreground mb-5">
                   <Check size={18} strokeWidth={2} />
                 </span>
-                <p className="font-display text-xl md:text-2xl text-[#1F2520] leading-snug">
+                <p className="font-display text-xl md:text-2xl text-foreground leading-snug">
                   Grazie per la tua iscrizione alla lista prioritaria di Sibilla.
                 </p>
-                <p className="font-body text-sm text-[#5A6157] mt-3 leading-relaxed">
+                <p className="font-body text-sm text-muted-foreground mt-3 leading-relaxed">
                   Ti contatteremo quando la prevendita sarà disponibile.
                 </p>
               </motion.div>
@@ -88,7 +89,7 @@ const NewsletterBlock = () => {
                 animate={{ opacity: 1 }}
                 className="flex flex-col items-center text-center"
               >
-                <h4 className="font-display md:text-3xl text-[#1F2520] leading-tight text-2xl text-center">
+                <h4 className="font-display md:text-3xl text-foreground leading-tight text-2xl text-center">
                   ✨ Lista prioritaria di lancio ✨
                 </h4>
 
@@ -101,33 +102,33 @@ const NewsletterBlock = () => {
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="Inserisci la tua email"
                       maxLength={255}
-                      className="flex-1 rounded-full bg-white border border-[#E0DACE] px-5 py-3 font-body text-sm text-[#1F2520] placeholder:text-[#A8987C] focus:outline-none focus:border-[#A8B89A] transition-colors"
+                      className="flex-1 rounded-full bg-background border border-border px-5 py-3 font-body text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors"
                     />
-                    <button
+                    <Button variant="ghost"
                       type="submit"
                       disabled={subscribing}
-                      className="inline-flex items-center justify-center gap-2 bg-[#1F2520] text-[#F4EFE6] font-body font-medium text-sm px-6 py-3 rounded-full hover:bg-[#2A312A] transition-colors disabled:opacity-60 whitespace-nowrap"
+                      className="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground font-body font-medium text-sm px-6 py-3 rounded-full hover:bg-primary/90 transition-colors disabled:opacity-60 whitespace-nowrap"
                     >
                       {subscribing ? <Loader2 size={16} className="animate-spin" /> : <Sparkles size={15} />}
                       Voglio essere tra i primi
-                    </button>
+                    </Button>
                   </div>
 
-                  <p className="font-body text-xs text-[#6B7864] leading-relaxed">
+                  <p className="font-body text-xs text-muted-foreground leading-relaxed">
                     Riceverai l'accesso anticipato prima dell'apertura ufficiale delle vendite.
                   </p>
 
-                  <p className="font-body text-xs text-[#6B7864] leading-relaxed">
+                  <p className="font-body text-xs text-muted-foreground leading-relaxed">
                     Ti contatteremo esclusivamente per aggiornamenti sul lancio di Sibilla e sulle iniziative Amarea.
                   </p>
 
                   <label className="flex items-start gap-2.5 cursor-pointer group select-none text-left">
                     <span
                       className={`mt-0.5 flex-shrink-0 w-4 h-4 rounded-[4px] border transition-all flex items-center justify-center ${
-                        consent ? "bg-[#1F2520] border-[#1F2520]" : "bg-white border-[#E0DACE] group-hover:border-[#A8B89A]"
+                        consent ? "bg-primary border-primary" : "bg-background border-border group-hover:border-primary/40"
                       }`}
                     >
-                      {consent && <Check size={12} className="text-[#F4EFE6]" strokeWidth={3} />}
+                      {consent && <Check size={12} className="text-primary-foreground" strokeWidth={3} />}
                     </span>
                     <input
                       type="checkbox"
@@ -135,7 +136,7 @@ const NewsletterBlock = () => {
                       onChange={(e) => setConsent(e.target.checked)}
                       className="sr-only"
                     />
-                    <span className="font-body text-xs text-[#5A6157] leading-relaxed">
+                    <span className="font-body text-xs text-muted-foreground leading-relaxed">
                       Acconsento al trattamento dei miei dati personali per ricevere comunicazioni relative al lancio
                       di Sibilla e alle iniziative Amarea Cosmetics.
                     </span>
@@ -148,7 +149,7 @@ const NewsletterBlock = () => {
                         initial={{ opacity: 0, y: -4 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0 }}
-                        className="font-body text-xs text-[#A85C5C]"
+                        className="font-body text-xs text-destructive"
                       >
                         {result.msg}
                       </motion.p>

@@ -14,7 +14,7 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ['Playfair Display', 'serif'],
+        display: ['Lora', 'serif'],
         body: ['DM Sans', 'sans-serif'],
       },
       colors: {
@@ -50,6 +50,14 @@ export default {
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
+        },
+        soft: {
+          DEFAULT: "hsl(var(--soft))",
+          foreground: "hsl(var(--soft-foreground))",
+        },
+        "surface-dark": {
+          DEFAULT: "hsl(var(--surface-dark))",
+          foreground: "hsl(var(--surface-dark-foreground))",
         },
         coral: "hsl(var(--coral))",
         lime: "hsl(var(--lime))",

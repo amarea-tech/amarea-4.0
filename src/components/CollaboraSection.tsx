@@ -38,7 +38,7 @@ const botanicals = [
 
 const CollaboraSection = () => {
   return (
-    <section id="collabora" className="relative overflow-hidden border-t border-[#E0DACE] bg-[#F4EFE6] scroll-mt-24 md:scroll-mt-28">
+    <section id="collabora" className="relative overflow-hidden border-t border-border bg-muted scroll-mt-24 md:scroll-mt-28">
       <div className="absolute inset-0 pointer-events-none z-0">
         {botanicals.map((p, i) => (
           <motion.img
@@ -70,13 +70,13 @@ const CollaboraSection = () => {
       </div>
       <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-10 py-20 md:py-28">
         <div className="max-w-3xl mx-auto text-center">
-          <span className="font-body text-xs uppercase tracking-[0.2em] text-[#5A6157]">
+          <span className="section-label">
             Collabora con noi
           </span>
-          <h2 className="mt-4 font-display text-4xl md:text-5xl lg:text-6xl leading-[1.05] text-[#1F2520]">
+          <h2 className="mt-4 font-display text-4xl md:text-5xl lg:text-6xl leading-[1.05] text-foreground">
             Costruiamo insieme una<br />cosmetica circolare
           </h2>
-          <p className="mt-6 font-body text-base md:text-lg text-[#5A6157] leading-relaxed">
+          <p className="mt-6 font-body text-base md:text-lg text-muted-foreground leading-relaxed">
             Crediamo nella forza delle collaborazioni per trasformare la ricerca in soluzioni sostenibili e innovative.
           </p>
         </div>
@@ -85,15 +85,15 @@ const CollaboraSection = () => {
           {cards.map(({ icon: Icon, title, text }) => (
             <div
               key={title}
-              className="bg-white border border-[#D9CFBE] rounded-2xl p-8 flex flex-col items-center text-center shadow-[0_8px_24px_-12px_rgba(120,90,50,0.18)] hover:border-[#A8B89A] hover:shadow-[0_12px_28px_-12px_rgba(120,90,50,0.22)] transition-all"
+              className="bg-background border border-border rounded-2xl p-8 flex flex-col items-center text-center shadow-card hover:border-primary/40 hover:shadow-card-hover transition-all"
             >
-              <span className="flex-shrink-0 w-[68px] h-[68px] rounded-full border border-[#1F2520]/50 text-[#1F2520] flex items-center justify-center mb-6 mx-auto">
+              <span className="flex-shrink-0 w-[68px] h-[68px] rounded-full border border-primary/50 text-foreground flex items-center justify-center mb-6 mx-auto">
                 <Icon size={28} strokeWidth={1.2} />
               </span>
-              <h3 className="font-display text-2xl text-[#1F2520] leading-tight">
+              <h3 className="font-display text-2xl text-foreground leading-tight">
                 {title}
               </h3>
-              <p className="mt-3 font-body text-sm text-[#5A6157] leading-relaxed">
+              <p className="mt-3 font-body text-sm text-muted-foreground leading-relaxed">
                 {text}
               </p>
             </div>
@@ -103,7 +103,7 @@ const CollaboraSection = () => {
         <div className="mt-12 flex justify-center">
           <a
             href="mailto:info@amareacosmetics.com?subject=Proposta%20di%20collaborazione%20%E2%80%93%20Amarea%20Cosmetics"
-            className="inline-flex items-center justify-center gap-2 bg-[#1F2520] text-[#F4EFE6] font-body font-medium text-sm px-7 py-3 rounded-full hover:bg-[#2A312A] transition-colors"
+            className="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground font-body font-medium text-sm px-7 py-3 rounded-full hover:bg-primary/90 transition-colors"
           >
             <Mail size={15} strokeWidth={1.8} />
             Contattaci per collaborare

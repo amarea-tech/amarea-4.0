@@ -63,9 +63,9 @@ const PartnerCard = ({ partner, index }: { partner: Partner; index: number }) =>
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, margin: "-60px" }}
     transition={{ duration: 0.6, delay: (index % 2) * 0.1 }}
-    className="bg-card border border-border rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-500 flex flex-col"
+    className="bg-card border border-border rounded-3xl overflow-hidden shadow-card hover:shadow-card-hover transition-shadow duration-500 flex flex-col"
   >
-    <div className="bg-white border-b border-border/60 flex items-center justify-center px-10 py-8 h-44">
+    <div className="bg-background border-b border-border/60 flex items-center justify-center px-10 py-8 h-44">
       {partner.logo ? (
         <img
           src={partner.logo.src}
@@ -74,17 +74,17 @@ const PartnerCard = ({ partner, index }: { partner: Partner; index: number }) =>
           loading="lazy"
         />
       ) : (
-        <span className="font-display text-2xl md:text-3xl font-bold text-foreground text-center leading-snug">
+        <span className="font-display text-2xl md:text-3xl font-semibold text-foreground text-center leading-snug">
           Zafferano Metelis
         </span>
       )}
     </div>
 
     <div className="p-8 flex flex-col flex-1">
-      <span className="self-start inline-block bg-primary/10 text-primary text-xs tracking-wide uppercase font-body font-bold px-4 py-1.5 rounded-full mb-4">
+      <span className="self-start inline-block bg-soft text-soft-foreground text-xs tracking-wide uppercase font-body font-bold px-4 py-1.5 rounded-full mb-4">
         {partner.sottoprodotto}
       </span>
-      <h3 className="font-display text-2xl font-bold text-foreground mb-2 leading-snug">{partner.name}</h3>
+      <h3 className="font-display text-2xl font-semibold text-foreground mb-2 leading-snug">{partner.name}</h3>
       <p className="font-body text-sm text-muted-foreground flex items-center gap-1.5 mb-4">
         <MapPin size={14} className="text-primary shrink-0" />
         {partner.luogo}
@@ -95,7 +95,7 @@ const PartnerCard = ({ partner, index }: { partner: Partner; index: number }) =>
           href={partner.link}
           target="_blank"
           rel="noopener noreferrer"
-          className="group inline-flex items-center gap-2 mt-6 font-body font-semibold text-primary hover:text-primary/80 transition-colors w-fit"
+          className="group inline-flex items-center gap-2 mt-6 font-body font-semibold text-accent hover:text-accent/80 transition-colors w-fit"
         >
           Visita il sito
           <ArrowUpRight size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
@@ -106,7 +106,7 @@ const PartnerCard = ({ partner, index }: { partner: Partner; index: number }) =>
           href={partner.instagram}
           target="_blank"
           rel="noopener noreferrer"
-          className="group inline-flex items-center gap-2 mt-6 font-body font-semibold text-primary hover:text-primary/80 transition-colors w-fit"
+          className="group inline-flex items-center gap-2 mt-6 font-body font-semibold text-accent hover:text-accent/80 transition-colors w-fit"
         >
           Seguili su Instagram
           <Instagram size={16} className="group-hover:scale-110 transition-transform duration-300" />
@@ -136,7 +136,7 @@ const FilieraPage = () => {
       </Helmet>
       <Navbar />
 
-      <section className="pt-40 pb-10 bg-[#F4EFE6] border-b border-[#E0DACE]">
+      <section className="pt-40 pb-10 bg-muted border-b border-border">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -144,10 +144,10 @@ const FilieraPage = () => {
             transition={{ duration: 0.7 }}
             className="max-w-3xl"
           >
-            <span className="inline-block bg-primary text-primary-foreground text-xs tracking-wide uppercase font-body font-bold px-5 py-2 rounded-full mb-6">
+            <span className="section-label mb-6">
               Filiera
             </span>
-            <h1 className="font-display text-4xl md:text-6xl font-extrabold text-foreground mb-6 leading-tight">
+            <h1 className="font-display text-4xl md:text-6xl font-semibold text-foreground mb-6 leading-tight">
               Le eccellenze che collaborano con noi
             </h1>
             <p className="font-body text-lg md:text-xl text-muted-foreground leading-relaxed">
@@ -189,7 +189,7 @@ const FilieraPage = () => {
             <img
               src={mappaItalia.url}
               alt="L'Italia di Amarea: le aziende partner nelle Marche"
-              className="w-full h-auto rounded-3xl border border-border shadow-sm"
+              className="w-full h-auto rounded-3xl border border-border shadow-card"
               loading="lazy"
             />
           </motion.div>
@@ -209,9 +209,9 @@ const FilieraPage = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-[#F4EFE6] border border-[#E0DACE] rounded-3xl px-8 py-14 md:px-16 text-center"
+            className="bg-muted border border-border rounded-3xl px-8 py-14 md:px-16 text-center"
           >
-            <h2 className="font-display text-3xl md:text-5xl font-extrabold text-foreground mb-4">
+            <h2 className="font-display text-3xl md:text-5xl font-semibold text-foreground mb-4">
               Costruiamo insieme una cosmetica circolare
             </h2>
             <p className="font-body text-lg text-muted-foreground leading-relaxed mb-8 max-w-2xl mx-auto">

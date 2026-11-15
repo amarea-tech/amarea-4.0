@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { ArrowUpRight, Award, Star, Medal } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import FooterSection from "@/components/FooterSection";
-import petalSaffron from "@/assets/petal-saffron.png";
+import petalSaffron from "@/assets/petal-saffron-lilac.png";
 import flowerSaffronLilac from "@/assets/flower-saffron-lilac.png";
 
 type Riconoscimento = {
@@ -107,7 +107,7 @@ const articoli: Articolo[] = [
 const riconoscimentoIcons = [Award, Star, Medal];
 const riconoscimentoTints = [
   { bg: "bg-primary/10", text: "text-primary", dot: "bg-primary" },
-  { bg: "bg-secondary/20", text: "text-secondary-foreground", dot: "bg-secondary" },
+  { bg: "bg-secondary/10", text: "text-secondary", dot: "bg-secondary" },
   { bg: "bg-accent/10", text: "text-accent", dot: "bg-accent" },
 ];
 
@@ -151,11 +151,11 @@ const RiconoscimentoTimelineItem = ({
         />
       </div>
 
-      <article className="bg-card border border-border rounded-3xl p-6 md:p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-500 flex-1">
-        <span className="block font-display text-3xl md:text-4xl font-extrabold text-primary leading-none mb-3">
+      <article className="bg-card border border-border rounded-3xl p-6 md:p-8 shadow-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-500 flex-1">
+        <span className="block font-display text-3xl md:text-4xl font-semibold text-primary leading-none mb-3">
           {riconoscimento.anno}
         </span>
-        <h3 className="font-display text-xl md:text-2xl font-bold text-foreground mb-3 leading-snug">
+        <h3 className="font-display text-xl md:text-2xl font-semibold text-foreground mb-3 leading-snug">
           {riconoscimento.titolo}
         </h3>
         <p className="font-body text-muted-foreground leading-relaxed">
@@ -168,8 +168,8 @@ const RiconoscimentoTimelineItem = ({
 
 const tipoTint = (tipo: string) =>
   tipo === "Intervista"
-    ? "bg-secondary/25 text-secondary-foreground"
-    : "bg-primary/10 text-primary";
+    ? "bg-soft text-secondary"
+    : "bg-soft text-soft-foreground";
 
 const ArticoloCard = ({
   articolo,
@@ -183,14 +183,14 @@ const ArticoloCard = ({
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, margin: "-60px" }}
     transition={{ duration: 0.6, delay: (index % 2) * 0.1 }}
-    className="group bg-card border border-border rounded-3xl p-8 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-500 flex flex-col"
+    className="group bg-card border border-border rounded-3xl p-8 shadow-card hover:shadow-card-hover hover:-translate-y-2 transition-all duration-500 flex flex-col"
   >
     <span
       className={`self-start inline-block text-xs tracking-wide uppercase font-body font-bold px-4 py-1.5 rounded-full mb-6 ${tipoTint(articolo.tipo)}`}
     >
       {articolo.tipo}
     </span>
-    <h3 className="font-display text-3xl md:text-4xl font-extrabold text-foreground leading-tight mb-4">
+    <h3 className="font-display text-3xl md:text-4xl font-semibold text-foreground leading-tight mb-4">
       {articolo.testata}
     </h3>
     <p className="font-body text-sm text-muted-foreground mb-3">{articolo.data}</p>
@@ -201,7 +201,7 @@ const ArticoloCard = ({
       href={articolo.link}
       target="_blank"
       rel="noopener noreferrer"
-      className="group/link inline-flex items-center gap-2 mt-6 font-body font-semibold text-primary hover:text-primary/80 transition-colors w-fit"
+      className="group/link inline-flex items-center gap-2 mt-6 font-body font-semibold text-accent hover:text-accent/80 transition-colors w-fit"
     >
       Leggi l'articolo
       <ArrowUpRight
@@ -260,7 +260,7 @@ const DiconoDiNoiPage = () => {
 
       <Navbar />
 
-      <section className="relative overflow-hidden pt-40 pb-20 bg-[#F4EFE6] border-b border-[#E0DACE]">
+      <section className="relative overflow-hidden pt-40 pb-20 bg-muted border-b border-border">
         {/* Decorazioni botaniche esistenti del brand */}
         <motion.img
           src={petalSaffron}
@@ -318,7 +318,7 @@ const DiconoDiNoiPage = () => {
             transition={{ duration: 0.7 }}
             className="max-w-3xl"
           >
-            <span className="inline-block bg-primary text-primary-foreground text-xs tracking-wide uppercase font-body font-bold px-5 py-2 rounded-full mb-6">
+            <span className="section-label mb-6">
               DICONO DI NOI
             </span>
             <h1 className="sr-only">Dicono di noi</h1>
@@ -337,7 +337,7 @@ const DiconoDiNoiPage = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="font-display text-3xl md:text-4xl font-extrabold text-foreground mb-12"
+            className="font-display text-3xl md:text-4xl font-semibold text-foreground mb-12"
           >
             Riconoscimenti
           </motion.h2>
@@ -357,7 +357,7 @@ const DiconoDiNoiPage = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="font-display text-3xl md:text-4xl font-extrabold text-foreground mb-10"
+            className="font-display text-3xl md:text-4xl font-semibold text-foreground mb-10"
           >
             Parlano di noi
           </motion.h2>
