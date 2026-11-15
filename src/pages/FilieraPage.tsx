@@ -215,7 +215,7 @@ const FilieraPage = () => {
               Costruiamo insieme una cosmetica circolare
             </h2>
             <p className="font-body text-lg text-muted-foreground leading-relaxed mb-8 max-w-2xl mx-auto">
-              Sei un'azienda agricola marchigiana e vuoi dare nuovo valore ai tuoi sottoprodotti? Scrivici.
+              Sei un'azienda agricola e vuoi dare nuovo valore ai tuoi sottoprodotti? Scrivici.
             </p>
             <a
               href="mailto:info@amareacosmetics.com?subject=Proposta%20di%20collaborazione%20%E2%80%93%20Amarea%20Cosmetics"
