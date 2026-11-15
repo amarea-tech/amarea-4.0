@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
-import { ArrowUpRight, MapPin } from "lucide-react";
+import { ArrowUpRight, Instagram, MapPin } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import FooterSection from "@/components/FooterSection";
 import logoMercante from "@/assets/filiera-logo-mercante.png.asset.json";
@@ -14,6 +14,7 @@ type Partner = {
   sottoprodotto: string;
   storia: string;
   link?: string;
+  instagram?: string;
   logo?: { src: string; alt: string };
 };
 
@@ -42,6 +43,7 @@ const partners: Partner[] = [
     storia:
       "Il Tesoro delle Api nasce da oltre quarant'anni di passione per l'apicoltura, che Rossano ha ereditato dal nonno e oggi trasmette ai figli. Ai mieli premiati al concorso \"Premio qualità miele marchigiano\" ha affiancato la coltivazione dello zafferano. L'azienda accoglie anche scolaresche e appassionati nel suo apiario sensoriale.",
     logo: { src: logoTesoroDelleApi.url, alt: "Logo Il Tesoro delle Api" },
+    instagram: "https://www.instagram.com/iltesorodelleapi/?utm_source=ig_web_button_share_sheet",
   },
   {
     name: "Frantoio L'Olinda",
@@ -96,6 +98,17 @@ const PartnerCard = ({ partner, index }: { partner: Partner; index: number }) =>
         >
           Visita il sito
           <ArrowUpRight size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
+        </a>
+      )}
+      {partner.instagram && (
+        <a
+          href={partner.instagram}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group inline-flex items-center gap-2 mt-6 font-body font-semibold text-primary hover:text-primary/80 transition-colors w-fit"
+        >
+          Seguili su Instagram
+          <Instagram size={16} className="group-hover:scale-110 transition-transform duration-300" />
         </a>
       )}
     </div>
