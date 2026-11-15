@@ -7,7 +7,7 @@ import logoMercante from "@/assets/filiera-logo-mercante.png.asset.json";
 import logoTesoroDelleApi from "@/assets/filiera-logo-tesoro-delle-api.png.asset.json";
 import logoOlinda from "@/assets/filiera-logo-olinda.png.asset.json";
 import logoMetelis from "@/assets/filiera-logo-metelis-orizzontale.png.asset.json";
-import mappaItalia from "@/assets/mappa-italia-marche-partner.png.asset.json";
+import mappaItalia from "@/assets/mappa-italia-marche-partner-brand.png.asset.json";
 
 type Partner = {
   name: string;
