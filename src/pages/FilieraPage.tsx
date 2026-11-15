@@ -6,6 +6,7 @@ import FooterSection from "@/components/FooterSection";
 import logoMercante from "@/assets/filiera-logo-mercante.png.asset.json";
 import logoTesoroDelleApi from "@/assets/filiera-logo-tesoro-delle-api.png.asset.json";
 import logoOlinda from "@/assets/filiera-logo-olinda.png.asset.json";
+import logoMetelis from "@/assets/filiera-logo-metelis.png.asset.json";
 
 type Partner = {
   name: string;
@@ -31,7 +32,8 @@ const partners: Partner[] = [
     luogo: "Matelica (MC)",
     sottoprodotto: "Tepali di zafferano",
     storia:
-      "Ai piedi del Monte San Vicino, Zafferano Metelis ha riportato in vita una coltura che qui era andata perduta. Nel 2016 un gruppo di giovani, partendo da atti notarili del Quattrocento che ne documentano il commercio, ha ripreso a coltivare lo zafferano. Il lavoro si svolge a mano, fiore per fiore.",
+      "A Matelica, nell'entroterra maceratese, i fratelli Riccardo e Matteo Gentilucci hanno fondato Zafferano Metelis nel 2018 per recuperare un'antica tradizione locale. Documenti dell'archivio notarile di Camerino attestano che lo zafferano si coltivava in queste valli già nel Quattrocento e arrivava fino ai mercati fiorentini. Oggi l'azienda collabora con produttori del territorio per far conoscere le proprietà di questa spezia preziosa.",
+    logo: { src: logoMetelis.url, alt: "Logo Zafferano Metelis" },
   },
   {
     name: "Il Tesoro delle Api",
