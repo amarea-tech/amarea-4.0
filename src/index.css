@@ -4,29 +4,29 @@
 
 @layer base {
   :root {
-    --background: 40 100% 98.82353%;
-    --foreground: 20 11.11111% 15.88235%;
-    --card: 40 100% 98.82353%;
-    --card-foreground: 20 11.11111% 15.88235%;
-    --popover: 40 100% 98.82353%;
-    --popover-foreground: 20 11.11111% 15.88235%;
-    --primary: 319.02439 23.69942% 33.92157%;
-    --primary-foreground: 40 100% 98.82353%;
-    --secondary: 150 30.26316% 29.80392%;
-    --secondary-foreground: 40 100% 98.82353%;
-    --muted: 27.27273 40.74074% 94.70588%;
-    --muted-foreground: 20 10% 38%;
-    --accent: 322.97872 50.53763% 36.47059%;
-    --accent-foreground: 40 100% 98.82353%;
-    --soft: 322.5 26.66667% 88.23529%;
-    --soft-foreground: 319.02439 23.69942% 33.92157%;
-    --surface-dark: 20 11.11111% 15.88235%;
-    --surface-dark-foreground: 40 100% 98.82353%;
+    --background: 50 20% 95.7%;
+    --foreground: 113 6.4% 27%;
+    --card: 0 0% 100%;
+    --card-foreground: 113 6.4% 27%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 113 6.4% 27%;
+    --primary: 327 22.5% 35.5%;
+    --primary-foreground: 50 20% 95.7%;
+    --secondary: 105 13.6% 74%;
+    --secondary-foreground: 113 6.4% 27%;
+    --muted: 105 14% 90%;
+    --muted-foreground: 113 6% 38%;
+    --accent: 327 22.5% 35.5%;
+    --accent-foreground: 50 20% 95.7%;
+    --soft: 105 13.6% 74%;
+    --soft-foreground: 113 6.4% 27%;
+    --surface-dark: 113 6.4% 27%;
+    --surface-dark-foreground: 50 20% 95.7%;
     --destructive: 0 60% 40%;
-    --destructive-foreground: 40 100% 98.82353%;
-    --border: 24 29.41176% 90%;
-    --input: 24 29.41176% 90%;
-    --ring: 319.02439 23.69942% 33.92157%;
+    --destructive-foreground: 50 20% 95.7%;
+    --border: 105 13.6% 74%;
+    --input: 105 13.6% 74%;
+    --ring: 327 22.5% 35.5%;
     --radius: 1rem;
     /* Compatibility aliases keep older controls within the brand palette. */
     --coral: var(--accent);
@@ -42,7 +42,7 @@
     --sidebar-accent-foreground: var(--primary);
     --sidebar-border: var(--border);
     --sidebar-ring: var(--ring);
-    --font-display: 'Lora', serif;
+    --font-display: 'Playfair Display', serif;
     --font-body: 'DM Sans', sans-serif;
     --shadow-card: 0 3px 16px hsl(var(--surface-dark) / 0.04);
     --shadow-card-hover: 0 6px 22px hsl(var(--surface-dark) / 0.07);
@@ -51,11 +51,11 @@
 
   .dark {
     --background: 20 11.11111% 15.88235%;
-    --foreground: 40 100% 98.82353%;
+    --foreground: 50 20% 95.7%;
     --card: 20 11% 20%;
-    --card-foreground: 40 100% 98.82353%;
+    --card-foreground: 50 20% 95.7%;
     --popover: 20 11% 20%;
-    --popover-foreground: 40 100% 98.82353%;
+    --popover-foreground: 50 20% 95.7%;
     --primary: 322.5 26.66667% 88.23529%;
     --primary-foreground: 20 11.11111% 15.88235%;
     --muted: 20 11% 22%;
@@ -67,7 +67,7 @@
 
   * { @apply border-border; }
   body { @apply bg-background text-foreground; font-family: var(--font-body); }
-  h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); font-weight: 500; letter-spacing: 0; }
+  h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); font-weight: 500; line-height: 1.15; letter-spacing: 0; }
 }
 
 @layer utilities {
@@ -87,7 +87,7 @@
     text-transform: uppercase;
   }
   .heading-emphasis { color: hsl(var(--primary)); font-style: italic; }
-  .dark-surface .heading-emphasis { color: hsl(var(--soft)); }
+  .dark-surface .heading-emphasis { color: hsl(var(--surface-dark-foreground)); }
   .dark-surface .section-label { color: hsl(var(--soft)); }
   .hero-overlay { background: var(--hero-overlay); }
   .gradient-text { color: hsl(var(--primary)); font-style: italic; background: none; }
