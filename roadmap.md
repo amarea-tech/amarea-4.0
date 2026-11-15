@@ -1,6 +1,7 @@
 # Amarea 4.0 — Ecommerce roadmap
 
 ## Aggiornamento identità visiva
+- [x] Applicare palette Instagram e Playfair Display mantenendo testi e struttura; verificare desktop e mobile.
 - [x] Uniformare palette e tipografia globali, hero, etichette, schede e pulsanti senza cambiare testi o struttura.
 - [x] Verificare home e pagine interne su desktop e mobile; non pubblicare.
 
