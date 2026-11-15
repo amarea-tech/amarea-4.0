@@ -5,7 +5,7 @@ import "./index.css";
 
 const fontStylesheet = document.createElement("link");
 fontStylesheet.rel = "stylesheet";
-fontStylesheet.href = "https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,500;1,600&family=DM+Sans:wght@300;400;500;600;700&display=swap";
+fontStylesheet.href = "https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&family=DM+Sans:wght@300;400;500;600;700&display=swap";
 document.head.appendChild(fontStylesheet);
 
 // Auto-reload when a stale chunk fails to load after a redeploy
