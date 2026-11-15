@@ -107,7 +107,7 @@ const articoli: Articolo[] = [
 const riconoscimentoIcons = [Award, Star, Medal];
 const riconoscimentoTints = [
   { bg: "bg-primary/10", text: "text-primary", dot: "bg-primary" },
-  { bg: "bg-soft", text: "text-foreground", dot: "bg-secondary" },
+  { bg: "bg-secondary/10", text: "text-secondary", dot: "bg-secondary" },
   { bg: "bg-accent/10", text: "text-accent", dot: "bg-accent" },
 ];
 
@@ -168,7 +168,7 @@ const RiconoscimentoTimelineItem = ({
 
 const tipoTint = (tipo: string) =>
   tipo === "Intervista"
-    ? "bg-soft text-foreground"
+    ? "bg-soft text-secondary"
     : "bg-soft text-soft-foreground";
 
 const ArticoloCard = ({

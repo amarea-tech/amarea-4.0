@@ -4,29 +4,29 @@
 
 @layer base {
   :root {
-    --background: 50 27.27273% 95.68627%;
-    --foreground: 113.33333 6.56934% 26.86275%;
-    --card: var(--background);
-    --card-foreground: var(--foreground);
-    --popover: var(--background);
-    --popover-foreground: var(--foreground);
-    --primary: 326.34146 22.65193% 35.49020%;
-    --primary-foreground: var(--background);
-    --secondary: 103.33333 13.63636% 74.11765%;
-    --secondary-foreground: var(--foreground);
-    --muted: var(--secondary);
-    --muted-foreground: var(--foreground);
-    --accent: var(--primary);
-    --accent-foreground: var(--background);
-    --soft: var(--secondary);
-    --soft-foreground: var(--primary);
-    --surface-dark: var(--foreground);
-    --surface-dark-foreground: var(--background);
+    --background: 40 100% 98.82353%;
+    --foreground: 20 11.11111% 15.88235%;
+    --card: 40 100% 98.82353%;
+    --card-foreground: 20 11.11111% 15.88235%;
+    --popover: 40 100% 98.82353%;
+    --popover-foreground: 20 11.11111% 15.88235%;
+    --primary: 319.02439 23.69942% 33.92157%;
+    --primary-foreground: 40 100% 98.82353%;
+    --secondary: 150 30.26316% 29.80392%;
+    --secondary-foreground: 40 100% 98.82353%;
+    --muted: 27.27273 40.74074% 94.70588%;
+    --muted-foreground: 20 10% 38%;
+    --accent: 322.97872 50.53763% 36.47059%;
+    --accent-foreground: 40 100% 98.82353%;
+    --soft: 322.5 26.66667% 88.23529%;
+    --soft-foreground: 319.02439 23.69942% 33.92157%;
+    --surface-dark: 20 11.11111% 15.88235%;
+    --surface-dark-foreground: 40 100% 98.82353%;
     --destructive: 0 60% 40%;
-    --destructive-foreground: var(--background);
-    --border: var(--secondary);
-    --input: var(--secondary);
-    --ring: var(--primary);
+    --destructive-foreground: 40 100% 98.82353%;
+    --border: 24 29.41176% 90%;
+    --input: 24 29.41176% 90%;
+    --ring: 319.02439 23.69942% 33.92157%;
     --radius: 1rem;
     /* Compatibility aliases keep older controls within the brand palette. */
     --coral: var(--accent);
@@ -42,7 +42,7 @@
     --sidebar-accent-foreground: var(--primary);
     --sidebar-border: var(--border);
     --sidebar-ring: var(--ring);
-    --font-display: 'Playfair Display', serif;
+    --font-display: 'Lora', serif;
     --font-body: 'DM Sans', sans-serif;
     --shadow-card: 0 3px 16px hsl(var(--surface-dark) / 0.04);
     --shadow-card-hover: 0 6px 22px hsl(var(--surface-dark) / 0.07);
@@ -50,24 +50,24 @@
   }
 
   .dark {
-    --background: 113.33333 6.56934% 26.86275%;
-    --foreground: 50 27.27273% 95.68627%;
-    --card: 113 7% 30%;
-    --popover: var(--card);
-    --primary: 326.34146 22.65193% 35.49020%;
-    --primary-foreground: 50 27.27273% 95.68627%;
-    --secondary-foreground: 113.33333 6.56934% 26.86275%;
-    --muted: 113 7% 30%;
-    --muted-foreground: 103.33333 13.63636% 74.11765%;
-    --surface-dark: 113.33333 6.56934% 26.86275%;
-    --surface-dark-foreground: 50 27.27273% 95.68627%;
-    --accent-foreground: var(--primary-foreground);
-    --destructive-foreground: var(--primary-foreground);
+    --background: 20 11.11111% 15.88235%;
+    --foreground: 40 100% 98.82353%;
+    --card: 20 11% 20%;
+    --card-foreground: 40 100% 98.82353%;
+    --popover: 20 11% 20%;
+    --popover-foreground: 40 100% 98.82353%;
+    --primary: 322.5 26.66667% 88.23529%;
+    --primary-foreground: 20 11.11111% 15.88235%;
+    --muted: 20 11% 22%;
+    --muted-foreground: 27 20% 76%;
+    --border: 20 10% 30%;
+    --input: 20 10% 30%;
+    --ring: 322.5 26.66667% 88.23529%;
   }
 
   * { @apply border-border; }
   body { @apply bg-background text-foreground; font-family: var(--font-body); }
-  h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); font-weight: 500; line-height: 1.15; letter-spacing: 0; }
+  h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); font-weight: 500; letter-spacing: 0; }
 }
 
 @layer utilities {
@@ -87,9 +87,8 @@
     text-transform: uppercase;
   }
   .heading-emphasis { color: hsl(var(--primary)); font-style: italic; }
-  .dark-surface .heading-emphasis { color: hsl(var(--surface-dark-foreground)); }
-  .dark-surface .section-label { color: hsl(var(--primary)); }
-  img[aria-hidden="true"], img.select-none { filter: grayscale(1); }
+  .dark-surface .heading-emphasis { color: hsl(var(--soft)); }
+  .dark-surface .section-label { color: hsl(var(--soft)); }
   .hero-overlay { background: var(--hero-overlay); }
   .gradient-text { color: hsl(var(--primary)); font-style: italic; background: none; }
   .card-hover { @apply transition-all duration-500 hover:-translate-y-1; }
