@@ -120,8 +120,8 @@ const ProductsSection = () => {
                 onClick={() => setQuizOpen(true)}
                 className="group inline-flex items-center gap-3 px-7 py-3.5 border border-primary-foreground/30 rounded-full text-primary-foreground hover:bg-primary-foreground hover:text-foreground transition-all duration-500"
               >
-                <span className="font-body text-xs tracking-[0.25em] uppercase">Amarea App</span>
-                <span className="font-display italic text-sm">scopri la tua crema</span>
+                <span className="font-body text-xs tracking-[0.25em] uppercase">SCOPRI LA CREMA PIU'ADATTA ALLA TUA PELLE</span>
+                <span className="font-display italic text-sm">{"\n"}</span>
               </Button>
             ) : (
               <motion.div
